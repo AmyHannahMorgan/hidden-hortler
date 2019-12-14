@@ -1,0 +1,19 @@
+{
+  "name": "hidden-hortler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmyHannahMorgan/hidden-hortler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AmyHannahMorgan/hidden-hortler/issues"
+  },
+  "homepage": "https://github.com/AmyHannahMorgan/hidden-hortler#readme"
+}
