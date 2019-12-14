@@ -19,6 +19,19 @@ body#mainMenu {
 
     overflow: hidden;
 }
+
+body#hostScreen{
+    display: grid;
+    grid-template-rows: [board-area-start] 50% [player-area-start game-area-end] 50%;
+
+    width: 100vw;
+    max-width: 100vw;
+
+    height: 100vh;
+    max-height: 100vh;
+
+    overflow: hidden;
+}
 /* classes */
 .mainMenuButton {
     width: 50vw;
