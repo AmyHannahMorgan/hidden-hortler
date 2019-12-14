@@ -1,5 +1,5 @@
 /* fonts */
-
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
 /* tags */
 body {
 
@@ -30,6 +30,7 @@ body#mainMenu {
     background-color: black;
 
     font-size: 1.5em;
+    font-family: 'Source Sans Pro', sans-serif;;
     color: white;
 }
 /* Ids */
