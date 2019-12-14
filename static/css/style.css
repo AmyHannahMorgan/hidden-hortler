@@ -46,6 +46,25 @@ body#hostScreen{
     font-family: 'Source Sans Pro', sans-serif;;
     color: white;
 }
+
+.boardArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    grid-row: board-area-start / board-area-end;
+}
+
+.playerArea {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row;
+    justify-content: center;
+    align-content: space-around;
+
+    grid-row: player-area-start / span 1;
+}
 /* Ids */
 #logo {
     width: 62.5vw;
