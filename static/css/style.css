@@ -9,7 +9,7 @@ body#mainMenu {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-content: center;
+    align-items: center;
 
     width: 100vw;
     max-width: 100vw;
@@ -22,5 +22,9 @@ body#mainMenu {
 /* classes */
 
 /* Ids */
+#logo {
+    width: 62.5vw;
 
+    object-fit: contain;
+}
 /* media queries */
