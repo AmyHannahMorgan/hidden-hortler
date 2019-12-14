@@ -1,7 +1,24 @@
 /* fonts */
 
 /* tags */
+body {
 
+}
+
+body#mainMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+
+    width: 100vw;
+    max-width: 100vw;
+
+    height: 100vh;
+    max-height: 100vh;
+
+    overflow: hidden;
+}
 /* classes */
 
 /* Ids */
