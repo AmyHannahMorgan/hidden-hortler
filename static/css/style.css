@@ -20,7 +20,18 @@ body#mainMenu {
     overflow: hidden;
 }
 /* classes */
+.mainMenuButton {
+    width: 50vw;
+    padding: 0.5em 0;
 
+    border: thin solid transparent;
+    border-radius: 0.5rem;
+    
+    background-color: black;
+
+    font-size: 1.5em;
+    color: white;
+}
 /* Ids */
 #logo {
     width: 62.5vw;
