@@ -20,7 +20,7 @@ body#mainMenu {
     overflow: hidden;
 }
 
-body#hostScreen{
+body#hostScreen {
     display: grid;
     grid-template-rows: [board-area-start] 50% [player-area-start game-area-end] 50%;
 
@@ -32,6 +32,7 @@ body#hostScreen{
 
     overflow: hidden;
 }
+
 /* classes */
 .mainMenuButton {
     width: 50vw;
@@ -65,10 +66,29 @@ body#hostScreen{
 
     grid-row: player-area-start / span 1;
 }
+
+.playerArea .player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.playerArea .player > .playerName {
+
+}
+
+.playerArea .player > .iconHolder {
+    position: relative;
+}
+
+
+
 /* Ids */
 #logo {
     width: 62.5vw;
 
     object-fit: contain;
 }
+
 /* media queries */
