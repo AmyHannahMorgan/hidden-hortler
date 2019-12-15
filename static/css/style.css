@@ -43,7 +43,7 @@ body#hostScreen {
     
     background-color: black;
 
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-family: 'Source Sans Pro', sans-serif;
     color: white;
 }
@@ -73,12 +73,14 @@ body#hostScreen {
     align-items: center;
     justify-content: center;
 
-    width: 10vw;
+    width: 12.5vw;
 }
 
 .playerArea .player > .playerName {
-    font-size: 1em;
+    font-size: 1rem;
     font-family: 'Source Sans Pro', sans-serif;
+
+    margin: 0.25em 0;
 }
 
 .playerArea .player > .iconHolder {
