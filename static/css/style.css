@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
 /* tags */
 body {
-
+    margin: 0%;
 }
 
 body#mainMenu {
@@ -44,7 +44,7 @@ body#hostScreen {
     background-color: black;
 
     font-size: 1.5em;
-    font-family: 'Source Sans Pro', sans-serif;;
+    font-family: 'Source Sans Pro', sans-serif;
     color: white;
 }
 
@@ -54,7 +54,7 @@ body#hostScreen {
     justify-content: space-around;
     align-items: center;
 
-    grid-row: board-area-start / board-area-end;
+    grid-row: board-area-start / span 1;
 }
 
 .playerArea {
@@ -72,17 +72,34 @@ body#hostScreen {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    width: 10vw;
 }
 
 .playerArea .player > .playerName {
-
+    font-size: 1em;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .playerArea .player > .iconHolder {
+    display: flex;
+    padding-top: 100%;
     position: relative;
+    width: 100%;
 }
 
+.playerArea .player > .iconHolder > .icon {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
 
+    object-fit: contain;
+}
+
+.playerArea .player > .iconHolder > .icon.unknown {
+    display: block;
+}
 
 /* Ids */
 #logo {
