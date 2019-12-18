@@ -2,6 +2,7 @@ const gen = require('./generators');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
+const games = [];
 
 //website serving
 app.use(express.static('static'));
