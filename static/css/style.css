@@ -3,6 +3,8 @@
 /* tags */
 body {
     margin: 0%;
+
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 body#mainMenu {
@@ -55,6 +57,37 @@ body#hostScreen {
     align-items: center;
 
     grid-row: board-area-start / span 1;
+}
+
+.boardArea > .startupHolder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.boardArea > .startupHolder > * {
+    margin: 0.25em 0;
+}
+
+.boardArea > .startupHolder > .buttonHolder {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.boardArea > .startupHolder > .buttonHolder > button {
+    margin: 0 0.25em;
+    padding: 0.75em;
+
+    border: thin solid transparent;
+    border-radius: 0.5rem;
+
+    font-size: 1rem;
+    color: white;
+
+    background-color: black;
 }
 
 .playerArea {
