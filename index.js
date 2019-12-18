@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 app.use(express.static('static'));
 
 //API
-app.post('/api/play', (req, res) => {
+app.post('/api/host', (req, res) => {
     let obj = {
         gameId: '',
         gameCode: '',
