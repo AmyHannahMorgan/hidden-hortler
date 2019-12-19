@@ -69,3 +69,7 @@ function genUnique(array, func) {
     return item;
 
 }
+
+module.exports = {
+    genUnique: genUnique
+};
