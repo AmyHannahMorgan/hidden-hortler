@@ -40,6 +40,27 @@ body#playSceen {
 }
 
 /* classes */
+.modal {
+    display: none;
+
+    grid-template-rows: [close-container-start] 10vh [main-area-start] auto;
+
+    width: 100vw;
+    height: 100vh;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.modal:active {
+    display: grid;
+}
+
+.modal > .closeContainer {
+    grid-column: close-container-start / span 1;
+}
+
 .mainMenuButton {
     width: 50vw;
     padding: 0.5em 0;
