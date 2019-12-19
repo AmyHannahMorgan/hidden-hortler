@@ -46,5 +46,26 @@ app.listen(port, () => console.log(`Listening on port: ${port}`));
 
 //helper functions
 function genUnique(array, func) {
+    let unique = false;
+    let item = func();
+
+    while(!unique) {
+        let flag = true;
+
+        for(let i = 0; i < array.length; i++) {
+            if(item === array[i]) {
+                flag = false;
+            }
+        }
+
+        if(flag == true) {
+            unique = true;
+        }
+        else {
+            item = func();
+        }
+    }
+
+    return item;
 
 }
