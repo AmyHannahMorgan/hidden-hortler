@@ -1,4 +1,4 @@
-const apiUrl = window.location.origin + '/api/';
+const apiUrl = window.location.origin + '/api';
 const hostReq = new XMLHttpRequest();
 
 hostReq.addEventListener('load', (e) => {
