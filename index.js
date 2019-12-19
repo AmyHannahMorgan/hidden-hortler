@@ -9,7 +9,7 @@ app.use(express.static('static'));
 
 //API
 app.post('/api/host', (req, res) => {
-    console.log({req});
+    console.log(req.connection.remoteAddress);
     console.log(req.ips);
     console.log(`Host game request recieved from: ${req.ip}`);
     let obj = gen.gameObject(games, req.ip);
