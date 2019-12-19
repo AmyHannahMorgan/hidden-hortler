@@ -9,10 +9,9 @@ app.use(express.static('static'));
 
 //API
 app.post('/api/host', (req, res) => {
-    console.log(req.headers['x-forwarded-for']);
-    console.log(req.ips);
-    console.log(`Host game request recieved from: ${req.ip}`);
-    let obj = gen.gameObject(games, req.ip);
+    let hostIp = req.headers['x-forwarded-for'].split(',')[1];
+    console.log(`Host game request recieved from: ${hostIp}`);
+    let obj = gen.gameObject(games, hostIp);
     console.log(`Game created with the id: ${obj.gameId} \nand the code: ${obj.gameCode}`);
     games.push(obj);
 
