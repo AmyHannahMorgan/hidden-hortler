@@ -8,6 +8,31 @@ function generateGameCode() {
     return base10.toString(16)
 }
 
+function genGameObject(games) {
+    let obj = {
+        gameId: '',
+        gameCode: '',
+        signallingEndpoint: ''
+    };
+    let prevIDs = () => {
+        let array = []
+        games.forEach(game => {
+            array.push(game.gameId);
+        });
+        return array
+    };
+    let prevCodes = () => {
+        let array = []
+        games.forEach(game => {
+            array.push(game.gameCode)
+        });
+        return array
+    }
+
+    obj.gameId = genUnique(prevIDs, generateID);
+    obj.gameCode = genUnique(prevCodes, generateGameCode);
+}
+
 function genUnique(array, func) {
     let unique = false;
     let item = func();
@@ -42,5 +67,6 @@ function RNG(min, max) {
 module.exports = {
     id: generateID,
     code: generateGameCode,
+    gameObject: genGameObject,
     unique: genUnique
 };
