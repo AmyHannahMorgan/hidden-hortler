@@ -45,30 +45,6 @@ app.get(/\/api\/signaling\/\?id=[a-f0-9]{12}/, (req, res) => {
 app.listen(port, () => console.log(`Listening on port: ${port}`));
 
 //helper functions
-function genUnique(array, func) {
-    let unique = false;
-    let item = func();
-
-    while(!unique) {
-        let flag = true;
-
-        for(let i = 0; i < array.length; i++) {
-            if(item === array[i]) {
-                flag = false;
-            }
-        }
-
-        if(flag == true) {
-            unique = true;
-        }
-        else {
-            item = func();
-        }
-    }
-
-    return item;
-
-}
 
 module.exports = {
     genUnique: genUnique

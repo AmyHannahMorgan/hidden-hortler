@@ -8,6 +8,31 @@ function generateGameCode() {
     return base10.toString(16)
 }
 
+function genUnique(array, func) {
+    let unique = false;
+    let item = func();
+
+    while(!unique) {
+        let flag = true;
+
+        for(let i = 0; i < array.length; i++) {
+            if(item === array[i]) {
+                flag = false;
+            }
+        }
+
+        if(flag == true) {
+            unique = true;
+        }
+        else {
+            item = func();
+        }
+    }
+
+    return item;
+
+}
+
 function RNG(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -17,4 +42,5 @@ function RNG(min, max) {
 module.exports = {
     id: generateID,
     code: generateGameCode,
+    unique: genUnique
 };
