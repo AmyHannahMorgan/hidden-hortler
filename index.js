@@ -9,8 +9,7 @@ app.use(express.static('static'));
 
 //API
 app.post('/api/host', (req, res) => {
-    
-
+    games.push(gen.gameObject(games));
 });
 
 app.get(/\/api\/play\/\?code=[a-f0-9]{4}/, (req, res) => {
