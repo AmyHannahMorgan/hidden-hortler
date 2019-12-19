@@ -31,6 +31,8 @@ function genGameObject(games) {
 
     obj.gameId = genUnique(prevIDs, generateID);
     obj.gameCode = genUnique(prevCodes, generateGameCode);
+
+    return obj;
 }
 
 function genUnique(array, func) {
