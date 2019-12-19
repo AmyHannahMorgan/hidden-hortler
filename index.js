@@ -14,7 +14,23 @@ app.post('/api/host', (req, res) => {
         gameCode: '',
         signallingEndpoint: ''
     };
+    let prevIDs = () => {
+        let array = []
+        games.forEach(game => {
+            array.push(game.gameId);
+        });
+        return array
+    };
+    let prevCodes = () => {
+        let array = []
+        games.forEach(game => {
+            array.push(game.gameCode)
+        });
+        return array
+    }
 
+    obj.gameId = genUnique(prevIDs, gen.id);
+    obj.gameCode = genUnique(prevCodes, gen.code);
 
 });
 
@@ -27,3 +43,8 @@ app.get(/\/api\/signaling\/\?id=[a-f0-9]{12}/, (req, res) => {
 });
 
 app.listen(port, () => console.log(`Listening on port: ${port}`));
+
+//helper functions
+function genUnique(array, func) {
+
+}
