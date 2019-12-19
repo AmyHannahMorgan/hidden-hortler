@@ -8,10 +8,11 @@ function generateGameCode() {
     return base10.toString(16)
 }
 
-function genGameObject(games) {
+function genGameObject(games, hostIp) {
     let obj = {
         gameId: '',
         gameCode: '',
+        host: hostIp,
         signallingEndpoint: ''
     };
     let prevIDs = () => {
