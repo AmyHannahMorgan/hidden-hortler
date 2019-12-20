@@ -51,6 +51,8 @@ body#playSceen {
     position: absolute;
     left: 0;
     top: 0;
+
+    background-color: white;
 }
 
 .modal:active {
@@ -58,7 +60,19 @@ body#playSceen {
 }
 
 .modal > .closeContainer {
-    grid-column: close-container-start / span 1;
+    grid-row: close-container-start / span 1;
+
+    border-bottom: medium solid black;
+
+    background-color: white;
+}
+
+.modal > .closeContainer > * {
+    text-align: center;
+}
+
+.modal > .closeContainer {
+
 }
 
 .mainMenuButton {
@@ -186,6 +200,37 @@ body#playSceen {
     width: 62.5vw;
 
     object-fit: contain;
+}
+
+#playModal > .contentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+#playModal > .contentContainer > * {
+    margin: 1em;
+}
+
+#playModal > .contentContainer > #gameCodeInput {
+    font-size: 1.5em;
+}
+
+#playModal > .contentContainer > #joinButton {
+    width: 50vw;
+    
+    padding: 0.75em;
+
+    border: thin solid transparent;
+    border-radius: 0.5rem;
+
+    font-size: 2rem;
+    color: white;
+
+    background-color: black;
 }
 
 #nameSelect {
