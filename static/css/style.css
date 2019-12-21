@@ -55,7 +55,7 @@ body#playSceen {
     background-color: white;
 }
 
-.modal:active {
+.modal.active {
     display: grid;
 }
 
