@@ -19,14 +19,48 @@ app.post('/api/host', (req, res) => {
 
 });
 
-app.get(/\/api\/play\/\?code=[a-f0-9]{4}/, (req, res) => {
+app.get('/api/play/:code([a-f0-9]{4})', (req, res) => {
+    console.log(`Play request recieved with code ${req.params.code}`);
+    
+    if(checkGameCode(req.params.code)) {
+        let obj = getGameObjectByCode(req.params.code);
 
+        res.redirect(302, '/play/?id=' + obj.gameId);
+    }
+    else {
+        res.status(404).send('Game with that code does not exist');
+    }
 });
 
-app.get(/\/api\/signaling\/\?id=[a-f0-9]{12}/, (req, res) => {
+app.get('/api/signaling/:id([a-f0-9]{12})', (req, res) => {
 
 });
 
 app.listen(port, () => console.log(`Listening on port: ${port}`));
 
 //helper functions
+function checkGameCode(code) {
+    let flag = false;
+
+    for(let i = 0; i < games.length; i++) {
+        if(games[i].gameCode == code) {
+            flag = true;
+            break;
+        }
+    }
+
+    return flag;
+}
+
+function getGameObjectByCode(code) {
+    let obj;
+
+    for(let i = 0; i < games.length; i++) {
+        if(games[i].gameCode == code) {
+            obj = games[i];
+            break;
+        }
+    }
+
+    return obj;
+}
