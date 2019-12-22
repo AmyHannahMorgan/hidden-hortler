@@ -27,6 +27,7 @@ playModalJoin.addEventListener('click', () => {
                     playModalError.innerHTML = e.target.responseText;
                     break;
                 case 200:
+                case 302:
                     window.location.href = e.target.responseURL;
                     break;
             }
