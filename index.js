@@ -37,7 +37,7 @@ app.get('/api/signaling/:id([a-f0-9]{12})', (req, res) => {
 
 });
 
-app.listen(port, () => console.log(`Listening on port: ${port}`));
+const server = app.listen(port, () => console.log(`Listening on port: ${port}`));
 
 //helper functions
 function checkGameCode(code) {
