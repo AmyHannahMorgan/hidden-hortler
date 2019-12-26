@@ -39,6 +39,20 @@ app.get('/api/signaling/:id([a-f0-9]{12})', (req, res) => {
 
 const server = app.listen(port, () => console.log(`Listening on port: ${port}`));
 
+const wss = new webSocket.Server({ server });
+
+wss.on('connection', (ws, req) => {
+    console.log(req);
+    let obj = {
+        type: 0,
+        body: 'Please send the code related to your request'
+    };
+
+    ws.send(JSON.stringify(obj));
+
+    ws.on('message', (msg) => handleWsMessage(ws, msg));
+});
+
 //helper functions
 function checkGameCode(code) {
     let flag = false;
@@ -64,4 +78,14 @@ function getGameObjectByCode(code) {
     }
 
     return obj;
+}
+
+function handleWsMessage(ws, message) {
+    try {
+        let msgJSON = JSON.parse(message);
+    } 
+    catch (error) {
+        console.log(error);
+        ws.send(`${error}`);
+    }
 }
