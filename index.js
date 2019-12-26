@@ -135,6 +135,14 @@ function handleWsMessage(ws, message) {
                 break;
             case 2: //player connecting to websocket
                 //setup player id and signaling
+                if(message.body.code !== undefined && checkGameCode(code)) {
+                    let obj = getGameObjectByCode(message.body.code);
+                    let player = 0;
+
+                    obj.players.push(player);
+
+                    ws.send();
+                }
                 break;
             case 3: //player sending message to host (caller to callee)
 
