@@ -14,6 +14,7 @@ function genGameObject(games, hostIp) {
         gameCode: '',
         host: hostIp,
         hostWebSocket: undefined,
+        players: [],
         signallingEndpoint: ''
     };
     let prevIDs = () => {
