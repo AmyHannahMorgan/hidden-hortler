@@ -63,6 +63,19 @@ function genUnique(array, func) {
 
 }
 
+function genPlayerObject(array, webSocket) {
+    let obj = {
+        id: undefined,
+        ws: webSocket
+    };
+
+    let uniqueid = genUnique(array, RNG(268435456, 4294967295));
+
+    obj.id = uniqueid;
+
+    return obj;
+}
+
 function RNG(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -73,5 +86,6 @@ module.exports = {
     id: generateID,
     code: generateGameCode,
     gameObject: genGameObject,
+    playerObject: genPlayerObject,
     unique: genUnique
 };
