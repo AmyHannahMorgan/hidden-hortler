@@ -117,6 +117,21 @@ function handleWsMessage(ws, message) {
         
             case 1: //host connecting to websocket
                 //setup host connection
+                if(message.body.id !== undefined && checkGameId(message.body.id)) {
+                    let obj = getGameObjectById(message.body.id);
+
+                    if(obj.hostWebSocket == undefined) {
+                        obj.hostWebSocket = ws;
+
+                        ws.send('host successfully added to game');
+                    }
+                    else {
+                        ws.send('host already connected to game');
+                    }
+                }
+                else {
+                    ws.send('invalid/no ID. please try again');
+                }
                 break;
             case 2: //player connecting to websocket
                 //setup player id and signaling
