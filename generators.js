@@ -13,6 +13,7 @@ function genGameObject(games, hostIp) {
         gameId: '',
         gameCode: '',
         host: hostIp,
+        hostWebSocket: undefined,
         signallingEndpoint: ''
     };
     let prevIDs = () => {
