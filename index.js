@@ -142,6 +142,9 @@ function handleWsMessage(ws, message) {
             case 4: //host replying to player (callee to caller)
 
                 break;
+            default:
+                ws.send('unrecognised message type');
+                break;
         }
     } 
     catch (error) {
