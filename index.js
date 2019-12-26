@@ -1,5 +1,6 @@
 const gen = require('./generators');
 const express = require('express');
+const webSocket = require('ws');
 const app = express();
 const port = process.env.PORT || 3000;
 const games = [];
