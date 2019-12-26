@@ -137,11 +137,27 @@ function handleWsMessage(ws, message) {
                 //setup player id and signaling
                 if(message.body.code !== undefined && checkGameCode(code)) {
                     let obj = getGameObjectByCode(message.body.code);
-                    let player = 0;
+                    let player = gen.playerObject(obj.players, ws);
+                    let resObject = {
+                        result: 0,
+                        respose: {
+                            id: player.id
+                        }
+                    };
 
                     obj.players.push(player);
 
-                    ws.send();
+                    ws.send(JSON.stringify(resObject));
+                }
+                else {
+                    let resObject = {
+                        result: 1,
+                        respose: {
+                            error: 'there was no valid code with message'
+                        }
+                    }
+
+                    ws.send(JSON.stringify(resObject));
                 }
                 break;
             case 3: //player sending message to host (caller to callee)
