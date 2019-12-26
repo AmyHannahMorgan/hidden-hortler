@@ -80,6 +80,32 @@ function getGameObjectByCode(code) {
     return obj;
 }
 
+function checkGameId(id) {
+    let flag = false
+
+    for(let i = 0; i < games.length; i++) {
+        if(games[i].gameId == id) {
+            flag = true;
+            break;
+        }
+    }
+
+    return flag
+}
+
+function getGameObjectById(id) {
+    let obj;
+
+    for(let i = 0; i < games.length; i++) {
+        if(games[i].gameId == id) {
+            obj = games[i];
+            break;
+        }
+    }
+
+    return obj;
+}
+
 function handleWsMessage(ws, message) {
     try {
         let msgJSON = JSON.parse(message);
