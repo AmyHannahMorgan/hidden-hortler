@@ -83,6 +83,25 @@ function getGameObjectByCode(code) {
 function handleWsMessage(ws, message) {
     try {
         let msgJSON = JSON.parse(message);
+
+        switch (msgJSON.type) {
+            case 0: //shouldnt be used, throw a fit
+                
+                break;
+        
+            case 1: //host connecting to websocket
+                //setup host connection
+                break;
+            case 2: //player connecting to websocket
+                //setup player id and signaling
+                break;
+            case 3: //player sending message to host (caller to callee)
+
+                break;
+            case 4: //host replying to player (callee to caller)
+
+                break;
+        }
     } 
     catch (error) {
         console.log(error);
