@@ -69,7 +69,7 @@ function genPlayerObject(array, webSocket) {
         ws: webSocket
     };
 
-    let uniqueid = genUnique(array, RNG(268435456, 4294967295));
+    let uniqueid = genUnique(array, RNG(268435456, 4294967295).toString(16));
 
     obj.id = uniqueid;
 
