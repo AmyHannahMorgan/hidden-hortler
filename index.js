@@ -202,6 +202,19 @@ function handleWsMessage(ws, message) {
                 }
                 break;
             case 6: //host to all players communication (placeholder)
+                if(msgJSON.body.id !== undefined && checkGameId(msgJSON.body.id)) {
+
+                }
+                else {
+                    let resObject = {
+                        result: 1,
+                        body: {
+                            error: 'no valid ID provided'
+                        }
+                    };
+
+                    ws.send(JSON.stringify(resObject));
+                }
                 break;
             case 7: //host to specific player communication (placeholder)
                 break;
