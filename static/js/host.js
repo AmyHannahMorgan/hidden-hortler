@@ -15,7 +15,14 @@ hostReq.addEventListener('load', (e) => {
     ws = new WebSocket(wsUrl);
 
     ws.addEventListener('message', (message) => {
-        console.log(JSON.parse(message.data));
+        let msgObj = JSON.parse(message.data); 
+        
+        if(msgObj.result !== undefined) {
+            console.log(msgObj);
+        }
+        else if(msgObj.type !== undefined) {
+            //switch case goes here
+        }
     });
 
     ws.addEventListener('open', () => {
