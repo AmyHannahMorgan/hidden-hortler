@@ -122,15 +122,33 @@ function handleWsMessage(ws, message) {
 
                     if(obj.hostWebSocket == undefined) {
                         obj.hostWebSocket = ws;
+                        let resObject = {
+                            result: 0,
+                            body: {
+                                message: 'host successfully added to game'
+                            }
+                        }
 
-                        ws.send('host successfully added to game');
+                        ws.send(JSON.stringify(resObject));
                     }
                     else {
-                        ws.send('host already connected to game');
+                        let resObject = {
+                            result: 1,
+                            body: {
+                                message: 'host already connected to game'
+                            }
+                        }
+                        ws.send(JSON.stringify(resObject));
                     }
                 }
                 else {
-                    ws.send('invalid/no ID. please try again');
+                    let resObject = {
+                        result: 1,
+                        body: {
+                            message: 'invalid/no ID. please try again'
+                        }
+                    }
+                    ws.send(JSON.stringify(resObject));
                 }
                 break;
             case 2: //player connecting to websocket
@@ -165,6 +183,12 @@ function handleWsMessage(ws, message) {
                 break;
             case 4: //host replying to player (callee to caller)
 
+                break;
+            case 5: //player to host communication (debug)
+                break;
+            case 6: //host to all players communication (debug)
+                break;
+            case 7: //host to specific player communication (debug)
                 break;
             default:
                 ws.send('unrecognised message type');
