@@ -184,11 +184,11 @@ function handleWsMessage(ws, message) {
             case 4: //host replying to player (callee to caller)
 
                 break;
-            case 5: //player to host communication (debug)
+            case 5: //player to host communication (placeholder)
                 break;
-            case 6: //host to all players communication (debug)
+            case 6: //host to all players communication (placeholder)
                 break;
-            case 7: //host to specific player communication (debug)
+            case 7: //host to specific player communication (placeholder)
                 break;
             default:
                 ws.send('unrecognised message type');
