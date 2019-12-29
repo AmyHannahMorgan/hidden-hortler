@@ -112,7 +112,14 @@ function handleWsMessage(ws, message) {
 
         switch (msgJSON.type) {
             case 0: //shouldnt be used, throw a fit
-                
+                let resObject = {
+                    result: 0,
+                    body: {
+                        message: 'you shouldnt be using this message type but ok'
+                    }
+                };
+
+                ws.send(JSON.stringify(resObject));
                 break;
         
             case 1: //host connecting to websocket
