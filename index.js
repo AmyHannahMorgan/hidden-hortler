@@ -185,6 +185,19 @@ function handleWsMessage(ws, message) {
                 }
                 break;
             case 3: //host to server and players, start game.
+                if(msgJSON.body.id !== undefined && checkGameId(msgJSON)) {
+
+                }
+                else {
+                    let resObject = {
+                        result: 1,
+                        body: {
+                            error: 'there was no valid ID provided'
+                        }
+                    };
+
+                    ws.send(JSON.stringify(resObject));
+                }
                 break;
             case 4: //player sending message to host (caller to callee)
 
