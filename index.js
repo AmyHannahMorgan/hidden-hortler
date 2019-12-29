@@ -161,17 +161,29 @@ function handleWsMessage(ws, message) {
                 //setup player id and signaling
                 if(msgJSON.body.code !== undefined && checkGameCode(msgJSON.body.code)) {
                     let obj = getGameObjectByCode(msgJSON.body.code);
-                    let player = gen.playerObject(obj.players, ws);
-                    let resObject = {
-                        result: 0,
-                        respose: {
-                            id: player.id
-                        }
-                    };
+                    if(!obj.started) {
+                        let player = gen.playerObject(obj.players, ws);
+                        let resObject = {
+                            result: 0,
+                            respose: {
+                                id: player.id
+                            }
+                        };
 
-                    obj.players.push(player);
+                        obj.players.push(player);
 
-                    ws.send(JSON.stringify(resObject));
+                        ws.send(JSON.stringify(resObject));
+                    }
+                    else {
+                        let resObject = {
+                            result: 1,
+                            body: {
+                                error: 'game has already started'
+                            }
+                        };
+
+                        ws.send(JSON.stringify(resObject));
+                    }
                 }
                 else {
                     let resObject = {
