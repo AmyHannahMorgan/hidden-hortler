@@ -42,7 +42,6 @@ const server = app.listen(port, () => console.log(`Listening on port: ${port}`))
 const wss = new webSocket.Server({ server });
 
 wss.on('connection', (ws, req) => {
-    console.log(req);
     let obj = {
         type: 0,
         body: 'Please send the code related to your request'
