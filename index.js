@@ -185,8 +185,18 @@ function handleWsMessage(ws, message) {
 
                 break;
             case 5: //player to host communication (placeholder)
-                if(messag checkGameCode(msgJSON.body.code)) {
+                if(msgJSON.body.code !== undefined && checkGameCode(msgJSON.body.code)) {
 
+                }
+                else {
+                    let resObject = {
+                        result: 1,
+                        respose: {
+                            error: 'there was no valid code provided'
+                        }
+                    };
+
+                    ws.send(JSON.stringify(resObject));
                 }
                 break;
             case 6: //host to all players communication (placeholder)
