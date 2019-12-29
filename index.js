@@ -193,8 +193,18 @@ function handleWsMessage(ws, message) {
             case 5: //player to host communication (placeholder)
                 if(msgJSON.body.code !== undefined && checkGameCode(msgJSON.body.code)) {
                     let obj = getGameObjectByCode(msgJSON.body.code);
-                    
-                    obj.hostWebSocket.send(message);
+
+                    if(obj.hostWebSocket !== undefined) {
+                        obj.hostWebSocket.send(message);
+                    }
+                    else {
+                        let resObject = {
+                            result: 1,
+                            body: {
+                                error: 'there is currently no host ws to send messages to'
+                            }
+                        }
+                    }
                 }
                 else {
                     let resObject = {
