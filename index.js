@@ -207,7 +207,9 @@ function handleWsMessage(ws, message) {
                         body: {
                             message: 'game started successfully'
                         }
-                    }
+                    };
+
+                    ws.send(JSON.stringify(resObject));
                 }
                 else {
                     let resObject = {
