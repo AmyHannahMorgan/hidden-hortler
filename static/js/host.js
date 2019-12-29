@@ -15,7 +15,7 @@ hostReq.addEventListener('load', (e) => {
     ws = new WebSocket(wsUrl);
 
     ws.addEventListener('message', (message) => {
-        console.log(message);
+        console.log(JSON.parse(message.data));
     });
 
     ws.addEventListener('open', () => {
