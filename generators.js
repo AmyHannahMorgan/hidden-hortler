@@ -12,6 +12,7 @@ function genGameObject(games, hostIp) {
     let obj = {
         gameId: '',
         gameCode: '',
+        started: false,
         host: hostIp,
         hostWebSocket: undefined,
         players: [],
