@@ -1,5 +1,5 @@
 const apiUrl = window.location.origin + '/api';
-const wsUrl = `ws://${window.location}`;
+const wsUrl = `ws://${window.location.host}`;
 const hostReq = new XMLHttpRequest();
 
 let ws;
@@ -18,11 +18,13 @@ hostReq.addEventListener('load', (e) => {
         console.log(message);
     });
 
-    let msgObj = {
-        type: 0
-    };
-
-    ws.send(JSON.stringify(msgObj));
+    ws.addEventListener('open', () => {
+        let msgObj = {
+            type: 0
+        };
+    
+        ws.send(JSON.stringify(msgObj));
+    })
 });
 hostReq.open('POST', apiUrl + '/host');
 hostReq.send();
