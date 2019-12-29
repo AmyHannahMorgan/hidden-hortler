@@ -26,7 +26,7 @@ app.get('/api/play/:code([a-f0-9]{4})', (req, res) => {
     if(checkGameCode(req.params.code)) {
         let obj = getGameObjectByCode(req.params.code);
 
-        res.redirect(302, '/play/?id=' + obj.gameId);
+        res.redirect(302, '/play/?code=' + obj.gameCode);
     }
     else {
         res.status(404).send('Game with that code does not exist');
