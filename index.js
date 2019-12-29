@@ -117,8 +117,8 @@ function handleWsMessage(ws, message) {
         
             case 1: //host connecting to websocket
                 //setup host connection
-                if(message.body.id !== undefined && checkGameId(message.body.id)) {
-                    let obj = getGameObjectById(message.body.id);
+                if(msgJSON.body.id !== undefined && checkGameId(msgJSON.body.id)) {
+                    let obj = getGameObjectById(msgJSON.body.id);
 
                     if(obj.hostWebSocket == undefined) {
                         obj.hostWebSocket = ws;
@@ -153,8 +153,8 @@ function handleWsMessage(ws, message) {
                 break;
             case 2: //player connecting to websocket
                 //setup player id and signaling
-                if(message.body.code !== undefined && checkGameCode(code)) {
-                    let obj = getGameObjectByCode(message.body.code);
+                if(msgJSON.body.code !== undefined && checkGameCode(msgJSON.body.code)) {
+                    let obj = getGameObjectByCode(msgJSON.body.code);
                     let player = gen.playerObject(obj.players, ws);
                     let resObject = {
                         result: 0,
@@ -185,6 +185,9 @@ function handleWsMessage(ws, message) {
 
                 break;
             case 5: //player to host communication (placeholder)
+                if(messag checkGameCode(msgJSON.body.code)) {
+
+                }
                 break;
             case 6: //host to all players communication (placeholder)
                 break;
