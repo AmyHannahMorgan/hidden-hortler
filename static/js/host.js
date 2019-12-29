@@ -13,6 +13,11 @@ hostReq.addEventListener('load', (e) => {
     gameCodeElement.innerHTML = gameObject.gameCode;
 
     ws = new WebSocket(wsUrl);
+
+    ws.addEventListener('message', (message) => {
+        console.log(message);
+    });
+
     let msgObj = {
         type: 0
     };
