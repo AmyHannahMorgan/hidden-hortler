@@ -20,7 +20,10 @@ hostReq.addEventListener('load', (e) => {
 
     ws.addEventListener('open', () => {
         let msgObj = {
-            type: 0
+            type: 1,
+            body: {
+                id: gameObject.gameId
+            }
         };
     
         ws.send(JSON.stringify(msgObj));
