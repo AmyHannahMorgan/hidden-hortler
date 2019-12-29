@@ -186,7 +186,9 @@ function handleWsMessage(ws, message) {
                 break;
             case 5: //player to host communication (placeholder)
                 if(msgJSON.body.code !== undefined && checkGameCode(msgJSON.body.code)) {
-
+                    let obj = getGameObjectByCode(msgJSON.body.code);
+                    
+                    obj.hostWebSocket.send(message);
                 }
                 else {
                     let resObject = {
