@@ -2,7 +2,7 @@ const playBoards = document.querySelectorAll('.playBoard');
 const playBoardObjs = [];
 const loadingScreen = document.querySelector('#loading');
 
-for(let i = 0; i < playBoards; i++) {
+for(let i = 0; i < playBoards.length; i++) {
     switch (playBoards[i].id) {
         case 'nameSelect':
             playBoardObjs.push(() => {
