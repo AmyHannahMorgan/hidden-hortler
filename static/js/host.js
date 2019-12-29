@@ -7,6 +7,8 @@ let ws;
 const gameCodeElement = document.querySelector('#gameCode');
 let gameObject;
 
+const startGameButton = document.querySelector('#gameStart');
+
 hostReq.addEventListener('load', (e) => {
     console.log(e);
     gameObject = JSON.parse(e.target.responseText);
@@ -39,3 +41,15 @@ hostReq.addEventListener('load', (e) => {
 hostReq.open('POST', apiUrl + '/host');
 hostReq.send();
 
+startGameButton.addEventListener('click', () => {
+    if(ws !== undefined && ws.readyState == 1) {
+        let msgObj = {
+            type: 3,
+            body: {
+                id: gameObject.gameId
+            }
+        };
+
+        ws.send(JSON.stringify(msgObj));
+    }
+})
