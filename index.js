@@ -203,7 +203,11 @@ function handleWsMessage(ws, message) {
                 break;
             case 6: //host to all players communication (placeholder)
                 if(msgJSON.body.id !== undefined && checkGameId(msgJSON.body.id)) {
+                    let obj = getGameObjectById(msgJSON.body.id);
 
+                    for(let i = o; i < obj.players.length; i++) {
+                        players[i].webSocket.send(message);
+                    }
                 }
                 else {
                     let resObject = {
