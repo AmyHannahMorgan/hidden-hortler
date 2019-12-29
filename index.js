@@ -184,13 +184,15 @@ function handleWsMessage(ws, message) {
                     ws.send(JSON.stringify(resObject));
                 }
                 break;
-            case 3: //player sending message to host (caller to callee)
+            case 3: //host to server and players, start game.
+                break;
+            case 4: //player sending message to host (caller to callee)
 
                 break;
-            case 4: //host replying to player (callee to caller)
+            case 5: //host replying to player (callee to caller)
 
                 break;
-            case 5: //player to host communication (placeholder)
+            case 6: //player to host communication (placeholder)
                 if(msgJSON.body.code !== undefined && checkGameCode(msgJSON.body.code)) {
                     let obj = getGameObjectByCode(msgJSON.body.code);
 
@@ -217,7 +219,7 @@ function handleWsMessage(ws, message) {
                     ws.send(JSON.stringify(resObject));
                 }
                 break;
-            case 6: //host to all players communication (placeholder)
+            case 7: //host to all players communication (placeholder)
                 if(msgJSON.body.id !== undefined && checkGameId(msgJSON.body.id)) {
                     let obj = getGameObjectById(msgJSON.body.id);
 
@@ -236,7 +238,7 @@ function handleWsMessage(ws, message) {
                     ws.send(JSON.stringify(resObject));
                 }
                 break;
-            case 7: //host to specific player communication (placeholder)
+            case 8: //host to specific player communication (placeholder)
                 break;
             default:
                 ws.send('unrecognised message type');
