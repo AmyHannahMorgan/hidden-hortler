@@ -169,10 +169,17 @@ function handleWsMessage(ws, message) {
                                 id: player.id
                             }
                         };
+                        let hostMsg = {
+                            type: 1,
+                            body: {
+                                id: player.id
+                            }
+                        }
 
                         obj.players.push(player);
 
                         ws.send(JSON.stringify(resObject));
+                        obj.hostWebSocket.send(JSON.stringify(hostMsg));
                     }
                     else {
                         let resObject = {
