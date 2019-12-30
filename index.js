@@ -114,6 +114,7 @@ function handleWsMessage(ws, message) {
                 let resObject = {
                     result: 0,
                     body: {
+                        type: 0,
                         message: 'you shouldnt be using this message type but ok'
                     }
                 };
@@ -131,6 +132,7 @@ function handleWsMessage(ws, message) {
                         let resObject = {
                             result: 0,
                             body: {
+                                type: 1,
                                 message: 'host successfully added to game'
                             }
                         }
@@ -166,6 +168,7 @@ function handleWsMessage(ws, message) {
                         let resObject = {
                             result: 0,
                             respose: {
+                                type: 2,
                                 id: player.id
                             }
                         };
@@ -212,6 +215,7 @@ function handleWsMessage(ws, message) {
                     let resObject = {
                         result: 0,
                         body: {
+                            type: 3,
                             message: 'game started successfully'
                         }
                     };
