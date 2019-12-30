@@ -167,7 +167,7 @@ function handleWsMessage(ws, message) {
                         let player = gen.playerObject(obj.players, ws);
                         let resObject = {
                             result: 0,
-                            respose: {
+                            body: {
                                 type: 2,
                                 id: player.id
                             }
@@ -294,6 +294,6 @@ function handleWsMessage(ws, message) {
     } 
     catch (error) {
         console.log(error);
-        ws.send(`${error}`);
+        // ws.send(`${error}`);
     }
 }
