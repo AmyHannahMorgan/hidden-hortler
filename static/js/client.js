@@ -4,6 +4,38 @@ class PlayBoard {
 
         switch(element.id) {
             case 'nameSelect':
+                    this.playButton = this.element.querySelector('#playButton');
+                    this.nameBox = this.element.querySelector('#nameBox');
+                    this.errorBox = this.element.querySelector('#nameErrorBox');
+
+                    this.playButton.addEventListener('click', () => {
+                        if(ws.readyState === 1) {
+                            let myName = encodeURIComponent(this.nameBox.value.trim());
+                            let hostMsg = {
+                                type: 1,
+                                body: {
+                                    id: myId,
+                                    name: myName
+                                }
+                            };
+
+                            let wsMsg = {
+                                type: 6,
+                                body: {
+                                    messsage: JSON.stringify(hostMsg)
+                                }
+                            }
+
+                            console.log(ws.messsage);
+                            console.log(JSON.stringify(wsMsg));
+                            console.log(JSON.parse(JSON.stringify(wsMsg)));
+
+                            ws.send(JSON.stringify(wsMsg));
+                        }
+                        else {
+                            this.errorBox.innerHTML = 'There is currently no connection to the server, please try again later';
+                        }
+                    });
                 break;
             default:
                 console.log(`unrecognised id: ${element.id}`);
