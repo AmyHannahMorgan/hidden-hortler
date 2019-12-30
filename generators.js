@@ -8,6 +8,10 @@ function generateGameCode() {
     return base10.toString(16)
 }
 
+function generatePlayerID() {
+    return RNG(268435456, 4294967295).toString(16)
+}
+
 function genGameObject(games, hostIp) {
     let obj = {
         gameId: '',
@@ -70,7 +74,7 @@ function genPlayerObject(array, webSocket) {
         ws: webSocket
     };
 
-    let uniqueid = genUnique(array, RNG(268435456, 4294967295).toString(16));
+    let uniqueid = genUnique(array, generatePlayerID);
 
     obj.id = uniqueid;
 
