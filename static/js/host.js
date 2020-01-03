@@ -9,6 +9,10 @@ let gameObject;
 
 const startGameButton = document.querySelector('#gameStart');
 
+const playerContainer = document.querySelector('.playerArea');
+const playerIcons = buildPlayerIcons(playerContainer.querySelectorAll('.icon'));
+console.log(playerIcons);
+
 hostReq.addEventListener('load', (e) => {
     console.log(e);
     gameObject = JSON.parse(e.target.responseText);
@@ -67,3 +71,13 @@ startGameButton.addEventListener('click', () => {
         ws.send(JSON.stringify(msgObj));
     }
 })
+
+function buildPlayerIcons(nodeArray) {
+    let iconSrcs = [];
+
+    for(let i = 0; i < nodeArray.length; i++) {
+        iconSrcs.push(nodeArray[i].src);
+    }
+
+    return iconSrcs;
+}
