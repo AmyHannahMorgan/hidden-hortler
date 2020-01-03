@@ -105,6 +105,32 @@ function getGameObjectById(id) {
     return obj;
 }
 
+function checkPlayerId(playerId, playerArray) {
+    let flag = false;
+
+    for(let i = 0; i < playerArray.length; i++) {
+        if(playerArray[i].id === playerId) {
+            flag = true;
+            break;
+        }
+    }
+
+    return flag;
+}
+
+function getPlayerById(playerId, playerArray) {
+    let player;
+
+    for(let i = 0; i < playerArray.length; i++) {
+        if(playerArray[i].id === playerId) {
+            let player = playerArray[i];
+            break
+        }
+    }
+
+    return player
+}
+
 function handleWsMessage(ws, message) {
     try {
         let msgJSON = JSON.parse(message);
