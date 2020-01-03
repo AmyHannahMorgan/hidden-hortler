@@ -33,7 +33,9 @@ hostReq.addEventListener('load', (e) => {
 
                     break;
                 case 1: // player join message with name
+                    console.log(`Player ${msgObj.body.name} joined with the ID: ${msgObj.body.id}`)
                     let index = players.push(msgObj.body) - 1;
+                    spawnPlayerToken(players[index], playerContainer, playerIcons);
                     break;
                 case 2: // game data from players
 
@@ -73,16 +75,16 @@ startGameButton.addEventListener('click', () => {
 })
 
 function buildPlayerIcons(nodeArray) {
-    let icon = [];
+    let icons = [];
 
     for(let i = 0; i < nodeArray.length; i++) {
         let iconElem = document.createElement('img');
         iconElem.src = nodeArray[i].src;
         iconElem.classList = nodeArray[i].classList;
-        iconSrcs.push(iconElem);
+        icons.push(iconElem);
     }
 
-    return icon;
+    return icons;
 }
 
 function spawnPlayerToken(player, playerHolder, iconArray) {
@@ -93,7 +95,8 @@ function spawnPlayerToken(player, playerHolder, iconArray) {
     iconHolder.classList.add('iconHolder');
 
     for(let i = 0; i < iconArray.length; i++) {
-        iconHolder.appendChild(iconArray[i]);
+        iconHolder.appendChild(iconArray[i].cloneNode(true));
+        console.log(iconHolder);
     }
 
     let playerName = document.createElement('p');
@@ -103,5 +106,5 @@ function spawnPlayerToken(player, playerHolder, iconArray) {
     playerElem.appendChild(iconHolder);
     playerElem.appendChild(playerName);
 
-    playerHolder.appendChild(playerName);
+    playerHolder.appendChild(playerElem);
 }
