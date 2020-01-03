@@ -73,13 +73,16 @@ startGameButton.addEventListener('click', () => {
 })
 
 function buildPlayerIcons(nodeArray) {
-    let iconSrcs = [];
+    let icon = [];
 
     for(let i = 0; i < nodeArray.length; i++) {
-        iconSrcs.push(nodeArray[i].src);
+        let iconElem = document.createElement('img');
+        iconElem.src = nodeArray[i].src;
+        iconElem.classList = nodeArray[i].classList;
+        iconSrcs.push(iconElem);
     }
 
-    return iconSrcs;
+    return icon;
 }
 
 function spawnPlayerToken(player, playerHolder, iconArray) {
@@ -90,10 +93,7 @@ function spawnPlayerToken(player, playerHolder, iconArray) {
     iconHolder.classList.add('iconHolder');
 
     for(let i = 0; i < iconArray.length; i++) {
-        let icon = document.createElement('img');
-        icon.src = iconArray[i];
-        icon.classList.add('icon');
-        iconHolder.appendChild(icon);
+        iconHolder.appendChild(iconArray[i]);
     }
 
     let playerName = document.createElement('p');
