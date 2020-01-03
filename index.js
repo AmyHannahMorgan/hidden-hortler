@@ -172,17 +172,10 @@ function handleWsMessage(ws, message) {
                                 id: player.id
                             }
                         };
-                        let hostMsg = {
-                            type: 1,
-                            body: {
-                                id: player.id
-                            }
-                        }
 
                         obj.players.push(player);
 
                         ws.send(JSON.stringify(resObject));
-                        obj.hostWebSocket.send(JSON.stringify(hostMsg));
                     }
                     else {
                         let resObject = {
@@ -244,7 +237,9 @@ function handleWsMessage(ws, message) {
                     let obj = getGameObjectByCode(msgJSON.body.code);
 
                     if(obj.hostWebSocket !== undefined) {
-                        obj.hostWebSocket.send(message);
+                        console.log(msgJSON.body.message);
+                        console.log(JSON.stringify(msgJSON.body.message));
+                        obj.hostWebSocket.send(msgJSON.body.message);
                     }
                     else {
                         let resObject = {
