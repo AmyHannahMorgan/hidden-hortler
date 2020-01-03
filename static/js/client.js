@@ -73,12 +73,25 @@ ws.onmessage = (messsage) => {
         console.log(msgJson);
 
         if(msgJson.type !== undefined) {
+            switch (msgJson.type) {
+                case 0: //system message
 
+                    break;
+                case 1: //join confirmation from host
+                    
+                    break;
+                case 2: //game data and board switch
+
+                    break;
+
+                default:
+                    break;
+            }
         }
         else if(msgJson.result !== undefined) {
             if(msgJson.result === 0) {
                 switch (msgJson.body.type) {
-                    case 2:
+                    case 2: //id response from server
                         myId = msgJson.body.id;
                         break;
                 

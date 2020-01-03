@@ -24,6 +24,20 @@ hostReq.addEventListener('load', (e) => {
         }
         else if(msgObj.type !== undefined) {
             //switch case goes here
+            switch (msgObj.type) {
+                case 0: // system message
+
+                    break;
+                case 1: // player join message with name
+                    
+                    break;
+                case 2: // game data from players
+
+                    break;
+            
+                default:
+                    break;
+            }
         }
     });
 
