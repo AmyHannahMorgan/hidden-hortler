@@ -11,7 +11,7 @@ const startGameButton = document.querySelector('#gameStart');
 
 const playerContainer = document.querySelector('.playerArea');
 const playerIcons = buildPlayerIcons(playerContainer.querySelectorAll('.icon'));
-console.log(playerIcons);
+const players = [];
 
 hostReq.addEventListener('load', (e) => {
     console.log(e);
@@ -33,7 +33,7 @@ hostReq.addEventListener('load', (e) => {
 
                     break;
                 case 1: // player join message with name
-                    
+                    let index = players.push(msgObj.body) - 1;
                     break;
                 case 2: // game data from players
 
@@ -80,4 +80,28 @@ function buildPlayerIcons(nodeArray) {
     }
 
     return iconSrcs;
+}
+
+function spawnPlayerToken(player, playerHolder, iconArray) {
+    let playerElem = document.createElement('div');
+    playerElem.classList.add('player');
+
+    let iconHolder = document.createElement('div');
+    iconHolder.classList.add('iconHolder');
+
+    for(let i = 0; i < iconArray.length; i++) {
+        let icon = document.createElement('img');
+        icon.src = iconArray[i];
+        icon.classList.add('icon');
+        iconHolder.appendChild(icon);
+    }
+
+    let playerName = document.createElement('p');
+    playerName.classList.add('playerName');
+    playerName.innerHTML = player.name;
+
+    playerElem.appendChild(iconHolder);
+    playerElem.appendChild(playerName);
+
+    playerHolder.appendChild(playerName);
 }
