@@ -19,14 +19,16 @@ class PlayBoard {
                                 }
                             };
 
+                            hostMsg = JSON.stringify(hostMsg);
+
                             let wsMsg = {
                                 type: 6,
                                 body: {
-                                    messsage: JSON.stringify(hostMsg)
+                                    message: hostMsg,
+                                    code: gameCode
                                 }
                             }
 
-                            console.log(ws.messsage);
                             console.log(JSON.stringify(wsMsg));
                             console.log(JSON.parse(JSON.stringify(wsMsg)));
 
