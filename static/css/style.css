@@ -267,4 +267,21 @@ body#playSceen {
     background-color: black;
 }
 
+#waiting > img {
+    width: 50vmin;
+    object-fit: contain;
+
+    animation: float 2s ease-in-out infinite alternate;
+}
+
+/* animations */
+@keyframes float {
+    from {
+        transform: translateY(-5%);
+    }
+    to {
+        transform: translateY(5%);
+    }
+}
+
 /* media queries */
