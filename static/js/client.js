@@ -1,8 +1,9 @@
 class PlayBoard {
     constructor(element) {
         this.element = element;
+        this.id = element.id;
 
-        switch(element.id) {
+        switch(this.id) {
             case 'nameSelect':
                     this.playButton = this.element.querySelector('#playButton');
                     this.nameBox = this.element.querySelector('#nameBox');
