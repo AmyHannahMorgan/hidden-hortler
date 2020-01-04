@@ -307,6 +307,31 @@ function handleWsMessage(ws, message) {
                 }
                 break;
             case 8: //host to specific player communication (placeholder)
+                if(msgJSON.body.id !== undefined && checkGameId(msgJSON.body.id)) {
+                    if(msgJSON.body.playerId !== undefined && checkPlayerId(msgJSON.body.playerId)) {
+                        let player = getPlayerById(msgJSON.body.playerId);
+
+                        player.ws.send(msgJSON.body.message);
+                    }
+                    else {
+                        let resObject = {
+                            result: 1,
+                            body: {
+                                error: 'No valid player ID provided'
+                            }
+                        }
+
+                        ws.send(JSON.stringify(resObject));
+                    }
+                }
+                else {
+                    let resObject ={
+                        respose: 1,
+                        body: {
+                            error: 'No valid ID provided'
+                        }
+                    }
+                }
                 break;
             default:
                 ws.send('unrecognised message type');
