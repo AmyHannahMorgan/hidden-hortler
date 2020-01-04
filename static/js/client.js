@@ -157,7 +157,7 @@ ws.onmessage = (messsage) => {
 
                     break;
                 case 1: //join confirmation from host
-                    
+                    playBoardHandler.changeBoard('waiting');
                     break;
                 case 2: //game data and board switch
 
