@@ -38,10 +38,9 @@ hostReq.addEventListener('load', (e) => {
                     spawnPlayerToken(players[index], playerContainer, playerIcons);
 
                     let playerMsg = {
-                        type: 2,
+                        type: 1,
                         body: {
-                            jump: true,
-                            location: 'waiting'
+                            message: 'welcome to the game'
                         }
                     };
 
