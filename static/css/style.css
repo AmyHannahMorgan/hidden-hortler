@@ -199,6 +199,10 @@ body#playSceen {
     opacity: 1;
 }
 
+.playBoard.fade-out {
+    opacity: 0;
+}
+
 /* Ids */
 #logo {
     width: 62.5vw;
