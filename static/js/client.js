@@ -1,3 +1,19 @@
+class PlayBoardHandler {
+    constructor(playBoardArray) {
+        this.playBoards = playBoardArray;
+        this.currentBoard = null;
+        this.nextBoard = null;
+    }
+
+    changeBoard(boardName) {
+
+    }
+
+    passData(boardName, data) {
+        
+    }
+}
+
 class PlayBoard {
     constructor(element) {
         this.element = element;
