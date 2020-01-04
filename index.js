@@ -123,12 +123,12 @@ function getPlayerById(playerId, playerArray) {
 
     for(let i = 0; i < playerArray.length; i++) {
         if(playerArray[i].id === playerId) {
-            let player = playerArray[i];
+            player = playerArray[i];
             break
         }
     }
 
-    return player
+    return player;
 }
 
 function handleWsMessage(ws, message) {
@@ -308,8 +308,9 @@ function handleWsMessage(ws, message) {
                 break;
             case 8: //host to specific player communication (placeholder)
                 if(msgJSON.body.id !== undefined && checkGameId(msgJSON.body.id)) {
-                    if(msgJSON.body.playerId !== undefined && checkPlayerId(msgJSON.body.playerId)) {
-                        let player = getPlayerById(msgJSON.body.playerId);
+                    let game = getGameObjectById(msgJSON.body.id)
+                    if(msgJSON.body.playerId !== undefined && checkPlayerId(msgJSON.body.playerId, game.players)) {
+                        let player = getPlayerById(msgJSON.body.playerId, game.players);
 
                         player.ws.send(msgJSON.body.message);
                     }
