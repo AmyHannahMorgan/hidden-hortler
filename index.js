@@ -263,8 +263,6 @@ function handleWsMessage(ws, message) {
                     let obj = getGameObjectByCode(msgJSON.body.code);
 
                     if(obj.hostWebSocket !== undefined) {
-                        console.log(msgJSON.body.message);
-                        console.log(JSON.stringify(msgJSON.body.message));
                         obj.hostWebSocket.send(msgJSON.body.message);
                     }
                     else {
