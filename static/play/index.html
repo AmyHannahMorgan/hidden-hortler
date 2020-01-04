@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body id="playScreen">
-    <div id="loading">
-
+    <div class="playBoard" id="waiting">
+        <img src="/assets/SVGs/Logo.svg">
+        <h2>Loading...</h2>
     </div>
-    <div class="playBoard" id="nameSelect">
+    <div class="playBoard active" id="nameSelect">
         <img src="/assets/SVGs/unknown.svg">
         <p id="nameErrorBox"></p>
         <input type="text" id="nameBox" placeholder="Enter name...">
@@ -25,7 +26,16 @@
     <div class="playBoard" id="chancellorVote">
 
     </div>
-    <div class="playBoard">
+    <div class="playBoard playerSelect" id="shootPlayer">
+
+    </div>
+    <div class="playBoard" id="chancellorPolicy">
+
+    </div>
+    <div class="playBoard" id="presidentPolicy">
+
+    </div>
+    <div class="playBoard" >
 
     </div>
     <script src="/js/client.js"></script>
