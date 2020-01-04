@@ -36,6 +36,27 @@ hostReq.addEventListener('load', (e) => {
                     console.log(`Player ${msgObj.body.name} joined with the ID: ${msgObj.body.id}`)
                     let index = players.push(msgObj.body) - 1;
                     spawnPlayerToken(players[index], playerContainer, playerIcons);
+
+                    let playerMsg = {
+                        type: 2,
+                        body: {
+                            jump: true,
+                            location: 'waiting'
+                        }
+                    };
+
+                    playerMsg = JSON.stringify(playerMsg);
+                    
+                    let wsMsg = {
+                        type: 8,
+                        body: {
+                            id: gameObject.gameId,
+                            playerId: players[index].id,
+                            message: playerMsg
+                        }
+                    }
+
+                    ws.send(JSON.stringify(wsMsg));
                     break;
                 case 2: // game data from players
 
