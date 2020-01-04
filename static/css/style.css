@@ -191,7 +191,7 @@ body#playSceen {
     max-height: 100vh;
 }
 
-.playBoard#nameSelect {
+.playBoard.active {
     display: flex;
 }
 
