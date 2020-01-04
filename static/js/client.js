@@ -1,16 +1,76 @@
 class PlayBoardHandler {
     constructor(playBoardArray) {
         this.playBoards = playBoardArray;
-        this.currentBoard = null;
+        this.currentBoard = this.findActiveBoard();
         this.nextBoard = null;
     }
 
     changeBoard(boardName) {
+        let board = this.findBoard(boardName);
 
+        if(board !== null) {
+            this.nextBoard = board;
+            this.transitionBoard(this.currentBoard, true)
+            .then(() => {
+                this.transitionBoard(this.nextBoard, false)
+            })
+            .then(() => {
+                this.currentBoard = this.nextBoard;
+                this.nextBoard = null;
+            });
+        }
+        else return false;
+    }
+
+    transitionBoard(playBoard, out) {
+        return new Promise((res, rej) => {
+            if(out) {
+                playBoard.element.addEventListener('transitionend', function foo(e) {
+                    playBoard.element.removeEventListener('transitionend', foo);
+                    playBoard.element.classList.remove('active');
+                    playBoard.element.classList.remove('fade-out');
+                    res();
+                });
+                playBoard.element.classList.add('fade-out');
+            }
+            else if(!out) {
+                playBoard.element.addEventListener('transitionend', function foo() {
+                    playBoard.element.removeEventListener('transitionend', foo);
+                    res();
+                })
+                playBoard.element.classList.add('active');
+            }
+        });
     }
 
     passData(boardName, data) {
-        
+
+    }
+
+    findBoard(boardName) {
+        let board = null;
+
+        for(let i = 0; i < this.playBoards.length; i++) {
+            if(boardName === this.playBoards[i].id) {
+                board = this.playBoards[i];
+                break;
+            }
+        }
+
+        return board;
+    }
+
+    findActiveBoard() {
+        let board = null;
+
+        for(let i = 0; i < this.playBoards.length; i++) {
+            if(this.playBoards[i].element.classList.contains('active')) {
+                board = this.playBoards[i];
+                break;
+            }
+        }
+
+        return board;
     }
 }
 
@@ -133,6 +193,7 @@ ws.onmessage = (messsage) => {
 for(let i = 0; i < playBoards.length; i++) {
     playBoardObjs.push(new PlayBoard(playBoards[i]));
 }
+const playBoardHandler = new PlayBoardHandler(playBoardObjs);
 
 function getUrlQueries(variables, name) {
     let params = new URLSearchParams(variables);
