@@ -12,6 +12,8 @@ const startGameButton = document.querySelector('#gameStart');
 const playerContainer = document.querySelector('.playerArea');
 const playerIcons = buildPlayerIcons(playerContainer.querySelectorAll('.icon'));
 const players = [];
+let enoughPlayers = false;
+let maxPlayers = false;
 
 hostReq.addEventListener('load', (e) => {
     console.log(e);
@@ -127,4 +129,29 @@ function spawnPlayerToken(player, playerHolder, iconArray) {
     playerElem.appendChild(playerName);
 
     playerHolder.appendChild(playerElem);
+}
+
+function checkPlayers(){
+    if(players.length > 4 && players.length < 10) {
+        enoughPlayers = true
+        switch (players.length) {
+            case 5:
+                
+                break;
+
+            case 7:
+
+                break;
+
+            case 9:
+
+                break;
+        
+            default:
+                break;
+        }
+    }
+    else if(players.length === 10) {
+        maxPlayers = true
+    }
 }
