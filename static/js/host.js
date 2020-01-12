@@ -8,6 +8,7 @@ const gameCodeElement = document.querySelector('#gameCode');
 let gameObject;
 
 const startupHolder = document.querySelector('#startup');
+const boardHolder = document.querySelector('#boards');
 
 const startGameButton = document.querySelector('#gameStart');
 
@@ -137,18 +138,17 @@ function spawnPlayerToken(player, playerHolder, iconArray) {
 
 function checkPlayers(){
     if(players.length > 4 && players.length < 10) {
-        enoughPlayers = true
+        if(!enoughPlayers) enoughPlayers = true;
+
         switch (players.length) {
-            case 5:
-                
-                break;
-
             case 7:
-
+                boardHolder.classList.remove('min5');
+                boardHolder.classList.add('min7');
                 break;
 
             case 9:
-
+                boardHolder.classList.remove('min7');
+                boardHolder.classList.add('min9');
                 break;
         
             default:
