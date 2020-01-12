@@ -7,6 +7,8 @@ let ws;
 const gameCodeElement = document.querySelector('#gameCode');
 let gameObject;
 
+const startupHolder = document.querySelector('#startup');
+
 const startGameButton = document.querySelector('#gameStart');
 
 const playerContainer = document.querySelector('.playerArea');
@@ -80,8 +82,10 @@ hostReq.addEventListener('load', (e) => {
         ws.send(JSON.stringify(msgObj));
     })
 });
-hostReq.open('POST', apiUrl + '/host');
-hostReq.send();
+if(startupHolder.classList.contains('active')) {
+    hostReq.open('POST', apiUrl + '/host');
+    hostReq.send();
+}
 
 startGameButton.addEventListener('click', () => {
     if(ws !== undefined && ws.readyState == 1) {
