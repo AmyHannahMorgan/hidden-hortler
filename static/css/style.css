@@ -99,10 +99,14 @@ body#playSceen {
 }
 
 .boardArea > .startupHolder {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.boardArea > .startupHolder.active {
+    display: flex;
 }
 
 .boardArea > .startupHolder > * {
