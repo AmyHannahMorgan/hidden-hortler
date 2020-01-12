@@ -38,29 +38,31 @@ hostReq.addEventListener('load', (e) => {
 
                     break;
                 case 1: // player join message with name
-                    console.log(`Player ${msgObj.body.name} joined with the ID: ${msgObj.body.id}`)
-                    let index = players.push(msgObj.body) - 1;
-                    spawnPlayerToken(players[index], playerContainer, playerIcons);
-
-                    let playerMsg = {
-                        type: 1,
-                        body: {
-                            message: 'welcome to the game'
+                    if(!maxPlayers){
+                        console.log(`Player ${msgObj.body.name} joined with the ID: ${msgObj.body.id}`)
+                        let index = players.push(msgObj.body) - 1;
+                        spawnPlayerToken(players[index], playerContainer, playerIcons);
+    
+                        let playerMsg = {
+                            type: 1,
+                            body: {
+                                message: 'welcome to the game'
+                            }
+                        };
+    
+                        playerMsg = JSON.stringify(playerMsg);
+                        
+                        let wsMsg = {
+                            type: 8,
+                            body: {
+                                id: gameObject.gameId,
+                                playerId: players[index].id,
+                                message: playerMsg
+                            }
                         }
-                    };
-
-                    playerMsg = JSON.stringify(playerMsg);
-                    
-                    let wsMsg = {
-                        type: 8,
-                        body: {
-                            id: gameObject.gameId,
-                            playerId: players[index].id,
-                            message: playerMsg
-                        }
+    
+                        ws.send(JSON.stringify(wsMsg));
                     }
-
-                    ws.send(JSON.stringify(wsMsg));
                     break;
                 case 2: // game data from players
 
@@ -89,7 +91,7 @@ if(startupHolder.classList.contains('active')) {
 }
 
 startGameButton.addEventListener('click', () => {
-    if(ws !== undefined && ws.readyState == 1) {
+    if(ws !== undefined && ws.readyState == 1 && enoughPlayers) {
         let msgObj = {
             type: 3,
             body: {
