@@ -5,6 +5,11 @@ body {
     margin: 0%;
 
     font-family: 'Source Sans Pro', sans-serif;
+
+    --lib-color: #77c9d6;
+    --end-lib-color: #2e6b86;
+    --fash-color: #fc5f4a;
+    --end-fash-color: #a6120f;
 }
 
 body#mainMenu {
@@ -131,6 +136,103 @@ body#playSceen {
     color: white;
 
     background-color: black;
+}
+
+.boardArea > .boardHolder {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    width: 100%;
+}
+
+.boardArea > .boardHolder > .area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    height: 45%;
+}
+
+.boardHolder > .area > .boardCounter {
+    position: relative;
+
+    width: 5em;
+    height: 5em;
+
+    border: transparent thick solid;
+    border-radius: 50%;
+
+    overflow: hidden;
+}
+
+.boardHolder > .area > .boardCounter::before {
+    content: "";
+
+    position: absolute;
+
+    height: 100%;
+    width: 100%;
+
+    border: none solid transparent;
+    border-radius: 50%;
+
+    transform: scale(0);
+    transform-origin: center;
+
+    transition: transform ease 0.25s;
+}
+
+.boardHolder > .area.fashArea > .boardCounter::before {
+    background-color: var(--fash-color);
+}
+
+.boardHolder > .area.libArea > .boardCounter::before {
+    background-color: var(--lib-color);
+}
+
+.boardHolder > .area > .boardCounter.active::before {
+    transform: scale(1);
+}
+
+.boardHolder > .fashArea > .boardCounter {
+    border-color: var(--fash-color);
+}
+
+.boardHolder > .fashArea > .boardCounter:nth-child(n+4) {
+    border-color: var(--end-fash-color);
+}
+
+.boardHolder > .libArea > .boardCounter {
+    border-color: var(--lib-color);
+}
+
+.boardHolder > .libArea > .boardCounter:last-child {
+    border-color: var(--end-lib-color);
+}
+
+.boardHolder > .fashArea > .boardCounter > img {
+    display: none;
+    object-fit: contain;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 75%;
+
+    position: absolute;
+}
+
+.boardHolder.min5 > .fashArea > .boardCounter:nth-child(3) > img.peek,
+.boardHolder.min7 > .fashArea > .boardCounter:nth-child(2) > img.check,
+.boardHolder.min7 > .fashArea > .boardCounter:nth-child(2) > img.check,
+.boardHolder.min7 > .fashArea > .boardCounter:nth-child(3) > img.pick,
+.boardHolder.min9 > .fashArea > .boardCounter:nth-child(n+1):nth-child(-n+2) > img.check,
+.boardHolder.min9 > .fashArea > .boardCounter:nth-child(3) > img.pick,
+.boardHolder > .fashArea > .boardCounter:nth-child(n+4):nth-child(-n+5) > img.kill {
+    display: block;
 }
 
 .playerArea {
