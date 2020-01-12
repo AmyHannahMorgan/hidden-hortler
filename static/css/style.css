@@ -139,11 +139,15 @@ body#playSceen {
 }
 
 .boardArea > .boardHolder {
-    display: flex;
+    display: none;
     flex-direction: column;
 
     height: 100%;
     width: 100%;
+}
+
+.boardArea > .boardHolder.active {
+    display: flex;
 }
 
 .boardArea > .boardHolder > .area {
