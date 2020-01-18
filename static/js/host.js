@@ -143,14 +143,19 @@ function checkPlayers(){
         if(!enoughPlayers) enoughPlayers = true;
 
         switch (players.length) {
+            case 5:
+                gameObject.counters = buildCounters(5);
+                break;
             case 7:
                 boardHolder.classList.remove('min5');
                 boardHolder.classList.add('min7');
+                gameObject.counters = buildCounters(7);
                 break;
 
             case 9:
                 boardHolder.classList.remove('min7');
                 boardHolder.classList.add('min9');
+                gameObject.counters = buildCounters(9);
                 break;
         
             default:
@@ -160,4 +165,60 @@ function checkPlayers(){
     else if(players.length === 10) {
         maxPlayers = true
     }
+}
+
+function buildCounters(playerNumber) {
+    let obj = {
+        fash: [],
+        lib: []
+    };
+    
+    for(let i = 0; i < 6; i++) {
+        let fashCounter = {
+            type: 'none',
+            active: false
+        };
+
+        switch (playerNumber) {
+            case 5:
+                if(i === 2) {
+                    fashCounter.type = 'peek'
+                }
+                break;
+            case 7:
+                if(i === 1) {
+                    fashCounter.type = 'check';
+                }
+                else if(i === 2) {
+                    fashCounter.type = 'pick';
+                }
+                break;
+            case 9:
+                if(i === 0 || i === 1) {
+                    fashCounter.type = 'check';
+                }
+                else if(i === 2) {
+                    fashCounter.type = 'pick';
+                }
+                break;
+        
+            default:
+                break;
+        }
+        if(i === 3 || i === 4) {
+            fashCounter.type = 'kill';
+        }
+
+        obj.fash.push(fashCounter);
+    }
+
+    for(let i = 0; i < 5; i++) {
+        let libCounter = {
+            active: false
+        };
+
+        obj.lib.push(libCounter);
+    }
+
+    return obj;
 }
