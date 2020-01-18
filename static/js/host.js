@@ -222,3 +222,63 @@ function buildCounters(playerNumber) {
 
     return obj;
 }
+
+function startGame() {
+    let undefinedPlayers = [...players];
+    let fash = [];
+    let libs = [];
+    switch(players.length) {
+        case 5:
+        case 6:
+            for(let i = 0; i < players.length; i++) {
+                let pick = RNG(0, undefinedPlayers.length);
+                let player = undefinedPlayers.splice(pick, 1);
+                player.isHitler = false;
+
+                if(i < 2) {
+                    player.party = 'fash';
+                    fash.push(player);
+                }
+                else {
+                    player.party = 'lib';
+                    libs.push(player);
+                }
+            }
+            break;
+        case 7:
+        case 8:
+            for(let i = 0; i < players.length; i++) {
+                let pick = RNG(0, undefinedPlayers.length);
+                let player = undefinedPlayers.splice(pick, 1);
+                player.isHitler = false;
+
+                if(i < 3) {
+                    player.party = 'fash';
+                    fash.push(player);
+                }
+                else {
+                    player.party = 'lib';
+                    libs.push(player);
+                }
+            }
+            break;
+        case 9:
+        case 10:
+            for(let i = 0; i < players.length; i++) {
+                let pick = RNG(0, undefinedPlayers.length);
+                let player = undefinedPlayers.splice(pick, 1);
+                player.isHitler = false;
+
+                if(i < 4) {
+                    player.party = 'fash';
+                    fash.push(player);
+                }
+                else {
+                    player.party = 'lib';
+                    libs.push(player);
+                }
+            }
+            break;
+    }
+    fash[RNG(0, fash.length)].isHitler = true;
+}
