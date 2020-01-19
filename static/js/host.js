@@ -236,11 +236,11 @@ function startGame() {
                 player.isHitler = false;
 
                 if(i < 2) {
-                    player.party = 'fash';
+                    player.party = 'fascist';
                     fash.push(player);
                 }
                 else {
-                    player.party = 'lib';
+                    player.party = 'liberal';
                     libs.push(player);
                 }
             }
@@ -253,11 +253,11 @@ function startGame() {
                 player.isHitler = false;
 
                 if(i < 3) {
-                    player.party = 'fash';
+                    player.party = 'fascist';
                     fash.push(player);
                 }
                 else {
-                    player.party = 'lib';
+                    player.party = 'liberal';
                     libs.push(player);
                 }
             }
@@ -270,15 +270,39 @@ function startGame() {
                 player.isHitler = false;
 
                 if(i < 4) {
-                    player.party = 'fash';
+                    player.party = 'fascist';
                     fash.push(player);
                 }
                 else {
-                    player.party = 'lib';
+                    player.party = 'liberal';
                     libs.push(player);
                 }
             }
             break;
     }
     fash[RNG(0, fash.length)].isHitler = true;
+
+    for(let i = 0; i < players.length; i++) {
+        let playerMsg = {
+            type: 2,
+            body: {
+                switch: 'partyID',
+                data: {
+                    playerParty: players[i].party,
+                    isHitler: players[i].isHitler
+                }
+            }
+        }
+
+        let wsMsg = {
+            type: 8,
+            body: {
+                id: gameObject.gameId,
+                playerId: players[i].id,
+                message: playerMsg
+            }
+        }
+
+        ws.send(JSON.stringify(wsMsg));
+    }
 }
