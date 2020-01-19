@@ -288,6 +288,7 @@ function startGame() {
             body: {
                 switch: 'partyID',
                 data: {
+                    destination: 'partyID',
                     playerParty: players[i].party,
                     isHitler: players[i].isHitler
                 }
