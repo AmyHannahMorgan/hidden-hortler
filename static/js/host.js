@@ -283,14 +283,32 @@ function startGame() {
     fash[RNG(0, fash.length - 1)].isHitler = true;
 
     for(let i = 0; i < players.length; i++) {
-        let playerMsg = {
-            type: 2,
-            body: {
-                switch: 'partyID',
-                data: {
-                    destination: 'partyID',
-                    playerParty: players[i].party,
-                    isHitler: players[i].isHitler
+        let playerMsg
+
+        if(players[i].party === 'liberal' || players[i].isHitler) {
+            playerMsg = {
+                type: 2,
+                body: {
+                    switch: 'partyID',
+                    data: {
+                        destination: 'partyID',
+                        playerParty: players[i].party,
+                        isHitler: players[i].isHitler
+                    }
+                }
+            }
+        }
+        else if (players[i].party = 'fascist') {
+            playerMsg = {
+                type: 2,
+                body: {
+                    switch: 'partyID',
+                    data: {
+                        destination: 'partyID',
+                        playerParty: players[i].party,
+                        isHitler: players[i].isHitler,
+                        fashList: fash
+                    }
                 }
             }
         }
