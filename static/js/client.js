@@ -81,40 +81,45 @@ class PlayBoard {
 
         switch(this.id) {
             case 'nameSelect':
-                    this.playButton = this.element.querySelector('#playButton');
-                    this.nameBox = this.element.querySelector('#nameBox');
-                    this.errorBox = this.element.querySelector('#nameErrorBox');
+                this.playButton = this.element.querySelector('#playButton');
+                this.nameBox = this.element.querySelector('#nameBox');
+                this.errorBox = this.element.querySelector('#nameErrorBox');
 
-                    this.playButton.addEventListener('click', () => {
-                        if(ws.readyState === 1) {
-                            let myName = encodeURIComponent(this.nameBox.value.trim());
-                            let hostMsg = {
-                                type: 1,
-                                body: {
-                                    id: myId,
-                                    name: myName
-                                }
-                            };
-
-                            hostMsg = JSON.stringify(hostMsg);
-
-                            let wsMsg = {
-                                type: 6,
-                                body: {
-                                    message: hostMsg,
-                                    code: gameCode
-                                }
+                this.playButton.addEventListener('click', () => {
+                    if(ws.readyState === 1) {
+                        let myName = encodeURIComponent(this.nameBox.value.trim());
+                        let hostMsg = {
+                            type: 1,
+                            body: {
+                                id: myId,
+                                name: myName
                             }
+                        };
 
-                            console.log(JSON.stringify(wsMsg));
-                            console.log(JSON.parse(JSON.stringify(wsMsg)));
+                        hostMsg = JSON.stringify(hostMsg);
 
-                            ws.send(JSON.stringify(wsMsg));
+                        let wsMsg = {
+                            type: 6,
+                            body: {
+                                message: hostMsg,
+                                code: gameCode
+                            }
                         }
-                        else {
-                            this.errorBox.innerHTML = 'There is currently no connection to the server, please try again later';
-                        }
-                    });
+
+                        console.log(JSON.stringify(wsMsg));
+                        console.log(JSON.parse(JSON.stringify(wsMsg)));
+
+                        ws.send(JSON.stringify(wsMsg));
+                    }
+                    else {
+                        this.errorBox.innerHTML = 'There is currently no connection to the server, please try again later';
+                    }
+                });
+                break;
+            case 'partyID':
+                this.playerPartyDisplay = this.element.querySelector('#playerParty');
+                this.whosHitler = this.element.querySelector('#hitler');
+                this.comrades = this.element.querySelector('#comrades');
                 break;
             default:
                 console.log(`unrecognised id: ${element.id}`);
