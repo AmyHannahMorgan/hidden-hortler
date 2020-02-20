@@ -44,7 +44,10 @@ class PlayBoardHandler {
     }
 
     passData(boardName, data) {
+        let destBoard = this.findBoard(boardName);
 
+        if(destBoard !== null) return destBoard.passData(data);
+        else return false;
     }
 
     findBoard(boardName) {
@@ -120,6 +123,27 @@ class PlayBoard {
                 this.playerPartyDisplay = this.element.querySelector('#playerParty');
                 this.whosHitler = this.element.querySelector('#hitler');
                 this.comrades = this.element.querySelector('#comrades');
+
+                this.passData = (data) => {
+                    this.playerPartyDisplay.innerHTML = data.playerParty;
+                    if(data.isHitler) this.whosHitler.innerHTML = 'You are Hitler';
+                    else if(data.playerParty === 'fascist') {
+                        let hitler = null
+                        let pals = []
+                        data.fashList.forEach(player => {
+                            if(player.isHitler) {
+                                hitler = player.name;
+                            }
+                            else if(player.name !== myName) pals.push(player);
+                        });
+
+                        this.whosHitler.innerHTML = `${hitler} is Hitler`;
+
+                        if(pals.length > 0) {
+                            this.comrades.innerHTML = pals.length === 2 ? `Your comrades are ${pals[0].name} and ${pals[1].name}` : `Your comrade is ${pals[0].name}`;
+                        }
+                    }
+                }
                 break;
             default:
                 console.log(`unrecognised id: ${element.id}`);
@@ -134,6 +158,7 @@ const loadingScreen = document.querySelector('#loading');
 const gameCode = getUrlQueries(window.location.search, 'code');
 
 let myId;
+let myName;
 
 let ws = new WebSocket(`ws://${window.location.host}`);
 
@@ -162,6 +187,7 @@ ws.onmessage = (messsage) => {
 
                     break;
                 case 1: //join confirmation from host
+                    myName = msgJson.body.name;
                     playBoardHandler.changeBoard('waiting');
                     break;
                 case 2: //game data and board switch
