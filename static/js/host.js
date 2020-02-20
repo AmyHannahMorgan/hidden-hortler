@@ -1,3 +1,72 @@
+class PlayerCheck {
+    constructor(id, playerList, type, callback) {
+        this.id = id;
+        this.type = type;
+        this.callback = callback;
+        this.responses = [];
+
+        switch(type) {
+            case 'check':
+                playerList.forEach(player => {
+                    let obj = {
+                        id: player.id,
+                        response: false
+                    };
+
+                    this.responses.push(obj);
+                });
+                break;
+            case 'vote':
+                playerList.forEach(player => {
+                    let obj = {
+                        id: player.id,
+                        response: null
+                    };
+
+                    this.responses.push(obj);
+                });
+                break;
+        }
+    }
+
+    get check() {
+        let flag = true;
+
+        switch(this.type) {
+            case 'check':
+                this.responses.forEach(response => {
+                    if(!response.response) {
+                        flag = false;
+                    }
+                });
+                break;
+            case 'vote':
+                this.responses.forEach(response => {
+                    if(response.response === null) {
+                        flag = false;
+                    }
+                });
+                break;
+        }
+
+        return flag;
+    }
+
+    update(id, value) {
+        response = this.findResByID(id)
+
+        response.response = value;
+
+        if(this.check) this.callback();
+    }
+
+    findResByID(id) {
+        this.responses.forEach(response => {
+            if(response.id === id) return response;
+        });
+    }
+}
+
 const apiUrl = window.location.origin + '/api';
 const wsUrl = `ws://${window.location.host}`;
 const hostReq = new XMLHttpRequest();
