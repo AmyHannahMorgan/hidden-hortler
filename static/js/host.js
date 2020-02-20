@@ -46,7 +46,8 @@ hostReq.addEventListener('load', (e) => {
                         let playerMsg = {
                             type: 1,
                             body: {
-                                message: 'welcome to the game'
+                                message: 'welcome to the game',
+                                name: msgObj.body.name
                             }
                         };
     
