@@ -165,7 +165,13 @@ ws.onmessage = (messsage) => {
                     playBoardHandler.changeBoard('waiting');
                     break;
                 case 2: //game data and board switch
+                    if(msgJson.body.data !== null) {
+                        playBoardHandler.passData(msgJson.body.data.destination, msgJson.body.data);
+                    }
 
+                    if(msgJson.body.switch !== '') {
+                        playBoardHandler.changeBoard(msgJson.body.switch);
+                    }
                     break;
 
                 default:
