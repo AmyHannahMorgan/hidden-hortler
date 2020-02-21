@@ -406,7 +406,20 @@ function startGame() {
 }
 
 function pickPresident() {
-
+    if(gameObject.president === null) {
+        gameObject.presidentIndex = RNG(0, players.length - 1);
+        gameObject.president = players[gameObject.presidentIndex];
+    }
+    else {
+        if(gameObject.presidentIndex === players.length - 1) {
+            gameObject.presidentIndex = 0;
+            gameObject.president = players[gameObject.presidentIndex];
+        }
+        else {
+            gameObject.presidentIndex += 1;
+            gameObject.president = players[gameObject.presidentIndex];
+        }
+    }
 }
 
 function RNG(min, max) {
