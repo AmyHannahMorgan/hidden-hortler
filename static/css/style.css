@@ -42,6 +42,14 @@ body#hostScreen {
 
 body#playSceen {
     position: relative;
+
+    width: 100vw;
+    max-width: 100vw;
+
+    height: 100vh;
+    max-height: 100vh;
+
+    overflow: hidden;
 }
 
 /* classes */
@@ -301,6 +309,8 @@ body#playSceen {
     height: 100vh;
     max-height: 100vh;
 
+    overflow: hidden;
+
     transition: ease-out opacity 0.25s;
 }
 
@@ -311,6 +321,19 @@ body#playSceen {
 
 .playBoard.fade-out {
     opacity: 0;
+}
+
+.playBoard > button {
+    margin: 0 0.25em;
+    padding: 0.75em;
+
+    border: thin solid transparent;
+    border-radius: 0.5rem;
+
+    font-size: 1rem;
+    color: white;
+
+    background-color: black;
 }
 
 /* Ids */
@@ -390,6 +413,18 @@ body#playSceen {
     object-fit: contain;
 
     animation: float 2s ease-in-out infinite alternate;
+}
+
+#partyID {
+
+}
+
+#partyID > #playerParty.liberal {
+    color: var(--lib-color);
+}
+
+#partyID > #playerParty.fascist {
+    color: var(--fash-color);
 }
 
 /* animations */
