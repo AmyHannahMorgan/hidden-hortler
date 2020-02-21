@@ -402,6 +402,27 @@ function startGame() {
 
     currentCheck = new PlayerCheck(players, 'check', () => {
         pickPresident();
+        let playerMsg = {
+            type: 2,
+            body: {
+                switch: 'chancellorSelect',
+                data: {
+                    destination: 'chancellorSelect',
+                    players: players
+                }
+            }
+        }
+
+        let wsMsg = {
+            type: 8,
+            body: {
+                id: gameObject.gameId,
+                playerId: gameObject.president.id,
+                message: playerMsg
+            }
+        }
+
+        ws.send(JSON.stringify(wsMsg));
     });
 }
 
