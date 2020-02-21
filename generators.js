@@ -22,6 +22,7 @@ function genGameObject(games, hostIp) {
         presidentIndex: 0,
         chancellor: null,
         lastChancellor: null,
+        hungParlimentCounter: 0,
         started: false,
         host: hostIp,
         hostWebSocket: undefined,
