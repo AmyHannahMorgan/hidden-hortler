@@ -100,6 +100,12 @@ hostReq.addEventListener('load', (e) => {
         
         if(msgObj.result !== undefined) {
             console.log(msgObj);
+            if(msgObj.result === 0) {
+                switch(msgObj.body.type) {
+                    case 3:
+                        startGame();
+                }
+            }
         }
         else if(msgObj.type !== undefined) {
             //switch case goes here
