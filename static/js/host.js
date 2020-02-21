@@ -56,7 +56,20 @@ class PlayerCheck {
 
         response.response = value;
 
-        if(this.check) this.callback();
+        if(this.check) {
+            if(this.type === 'vote') {
+                let yes = 0;
+                let no = 0;
+
+                this.responses.forEach(response => {
+                    if(response.value) yes++;
+                    else no++;
+                });
+
+                this.callback([yes, no]);
+            }
+            else this.callback();
+        }
     }
 
     findResByID(id) {
@@ -145,6 +158,21 @@ hostReq.addEventListener('load', (e) => {
                     switch(msgObj.body.type) {
                         case 0: //check data
                             currentCheck.update(msgObj.body.id, msgObj.body.value);
+                            break;
+                        case 1: // chancellor select
+                            gameObject.chancellor = findPlayerByID(msgObj.body.selectedPlayerID);
+
+                            currentCheck = new PlayerCheck(players, 'vote', result => {
+                                if(result[0] > result[1]) {
+                                    gameObject.hungParlimentCounter = 0;
+                                }
+                                else if(checkHungParliment()) {
+                                    gameObject.hungParlimentCounter = 0;
+                                }
+                                else {
+                                    gameObject.hungParlimentCounter += 1;
+                                }
+                            });
                             break;
                     }
                     break;
@@ -447,6 +475,19 @@ function pickPresident() {
             gameObject.president = players[gameObject.presidentIndex];
         }
     }
+}
+
+function findPlayerByID(id, playerList) {
+    playerList.forEach(player => {
+        if(player.id === id) return player;
+    });
+
+    return null;
+}
+
+function checkHungParliment() {
+    if(gameObject.hungParlimentCounter === 3) return true;
+    else return false;
 }
 
 function RNG(min, max) {
