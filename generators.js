@@ -16,10 +16,12 @@ function genGameObject(games, hostIp) {
     let obj = {
         gameId: '',
         gameCode: '',
+        players: [],
+        president: null,
+        chancellor: null,
         started: false,
         host: hostIp,
         hostWebSocket: undefined,
-        players: [],
         signallingEndpoint: ''
     };
     let prevIDs = () => {
