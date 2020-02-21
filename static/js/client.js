@@ -168,6 +168,52 @@ class PlayBoard {
                     ws.send(JSON.stringify(wsMsg))
                 });
                 break;
+            case 'selectChancellor':
+                this.playerIconTemplate = this.element.querySelector('.playerIcon');
+                this.confirmModal = this.element.querySelector('.confirmModal');
+                this.yesCheck = this.confirmModal.querySelector('.yesCheck');
+                this.noCheck = this.confirmModal.querySelector('.noCheck');
+
+                this.passData = (data) => {
+                    data.players.forEach(player => {
+                        let playerIcon = this.playerIconTemplate.cloneNode(true);
+                        playerIcon.classList.remove('template');
+                        playerIcon.setAttribute('player-id', player.id);
+                        playerIcon.setAttribute('player-name', player.name);
+                        playerIcon.querySelector('.playerName').innerHTML = player.name;
+
+                        playerIcon.addEventListener('click', (e) => {
+                            this.confirmModal.classList.add('active');
+                            this.confirmModal.querySelector('.selectedPlayer').innerHTML = e.target.getAttribute('player-name');
+                            this.confirmModal.setAttribute('player-id', e.targetgetAttribute('player-id'));
+                        });
+
+                        this.element.appendChild(playerIcon);
+                    });
+                }
+                this.yesCheck.addEventListener('click', () => {
+                    let hostMsg = {
+                        type: 1,
+                        body: {
+                            selectedPlayerID: this.confirmModal.getAttribute('player-id')
+                        }
+                    };
+
+                    let wsMsg = {
+                        type: 6,
+                        body: {
+                            code: gameCode,
+                            message: hostMsg
+                        }
+                    }
+
+                    ws.send(JSON.stringify(wsMsg));
+                });
+
+                this.noCheck.addEventListener('click', () => {
+                    this.confirmModal.classList.remove('active');
+                })
+                break;
             default:
                 console.log(`unrecognised id: ${element.id}`);
                 break;
