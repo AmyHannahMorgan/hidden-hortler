@@ -79,6 +79,57 @@ class PlayerCheck {
     }
 }
 
+class PolicyDeck {
+    constructor() {
+        this.deck = [];
+        this.discardPile = [];
+
+        for(let i = 0; i < 11; i++) {
+            let card = {
+                type: 'fascist'
+            }
+
+            this.deck.push(card);
+
+            if(i < 6) {
+                card = {
+                    type: 'liberal'
+                }
+
+                this.deck.push(card);
+            }
+        }
+
+        this.shuffle();
+    }
+
+    shuffle() {
+        let newDeck = []
+
+        for(let i = 0; i > 17; i++) {
+            newDeck.push(this.deck.splice(RNG[0, this.deck.length - 1], 1));
+        }
+
+        this.deck = newDeck;
+    }
+
+    draw(number) {
+        return this.deck.splice(0, number);
+    }
+
+    recombine() {
+        this.deck = this.deck.concat(this.discardPile);
+        this.discardPile = [];
+    }
+
+    discard(cards) {
+        if(Array.isArray(cards)) {
+            this.discardPile = this.discardPile.concat(cards);
+        }
+        else this.discardPile.push(cards);
+    }
+
+}
 const apiUrl = window.location.origin + '/api';
 const wsUrl = `ws://${window.location.host}`;
 const hostReq = new XMLHttpRequest();
