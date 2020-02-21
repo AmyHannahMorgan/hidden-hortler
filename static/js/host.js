@@ -1,6 +1,5 @@
 class PlayerCheck {
-    constructor(id, playerList, type, callback) {
-        this.id = id;
+    constructor(playerList, type, callback) {
         this.type = type;
         this.callback = callback;
         this.responses = [];
@@ -87,6 +86,8 @@ const players = [];
 let enoughPlayers = false;
 let maxPlayers = false;
 
+let currentCheck = null;
+
 hostReq.addEventListener('load', (e) => {
     console.log(e);
     gameObject = JSON.parse(e.target.responseText);
@@ -135,7 +136,11 @@ hostReq.addEventListener('load', (e) => {
                     }
                     break;
                 case 2: // game data from players
-
+                    switch(msgObj.body.type) {
+                        case 0: //check data
+                            currentCheck.update(msgObj.body.id, msgObj.body.value);
+                            break;
+                    }
                     break;
             
                 default:
@@ -394,6 +399,14 @@ function startGame() {
 
         ws.send(JSON.stringify(wsMsg));
     }
+
+    currentCheck = new PlayerCheck(players, 'check', () => {
+        pickPresident();
+    });
+}
+
+function pickPresident() {
+
 }
 
 function RNG(min, max) {
