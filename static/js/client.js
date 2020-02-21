@@ -123,6 +123,7 @@ class PlayBoard {
                 this.playerPartyDisplay = this.element.querySelector('#playerParty');
                 this.whosHitler = this.element.querySelector('#hitler');
                 this.comrades = this.element.querySelector('#comrades');
+                this.checkButton = this.element.querySelector('.okCheck');
 
                 this.passData = (data) => {
                     this.playerPartyDisplay.innerHTML = data.playerParty;
@@ -144,6 +145,28 @@ class PlayBoard {
                         }
                     }
                 }
+
+                this.checkButton.addEventListener('click', () => {
+                    playBoardHandler.changeBoard('waiting');
+                    let hostMsg = {
+                        type: 2,
+                        body: {
+                            type: 0,
+                            id: myId,
+                            value: true
+                        }
+                    }
+
+                    let wsMsg = {
+                        type: 6,
+                        body: {
+                            code: gameCode,
+                            message: hostMsg
+                        }
+                    }
+
+                    ws.send(JSON.stringify(wsMsg))
+                });
                 break;
             default:
                 console.log(`unrecognised id: ${element.id}`);
