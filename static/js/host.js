@@ -405,9 +405,9 @@ function startGame() {
         let playerMsg = {
             type: 2,
             body: {
-                switch: 'chancellorSelect',
+                switch: 'selectChancellor',
                 data: {
-                    destination: 'chancellorSelect',
+                    destination: 'selectChancellor',
                     players: players
                 }
             }
