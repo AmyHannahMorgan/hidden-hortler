@@ -384,6 +384,8 @@ function buildCounters(playerNumber) {
 }
 
 function startGame() {
+    gameObject.deck = new PolicyDeck();
+
     let undefinedPlayers = [...players];
     let fash = [];
     let libs = [];
@@ -487,27 +489,6 @@ function startGame() {
 
     currentCheck = new PlayerCheck(players, 'check', () => {
         pickPresident();
-        let playerMsg = {
-            type: 2,
-            body: {
-                switch: 'selectChancellor',
-                data: {
-                    destination: 'selectChancellor',
-                    players: players
-                }
-            }
-        }
-
-        let wsMsg = {
-            type: 8,
-            body: {
-                id: gameObject.gameId,
-                playerId: gameObject.president.id,
-                message: playerMsg
-            }
-        }
-
-        ws.send(JSON.stringify(wsMsg));
     });
 }
 
@@ -526,6 +507,28 @@ function pickPresident() {
             gameObject.president = players[gameObject.presidentIndex];
         }
     }
+
+    let playerMsg = {
+        type: 2,
+        body: {
+            switch: 'selectChancellor',
+            data: {
+                destination: 'selectChancellor',
+                players: players
+            }
+        }
+    }
+
+    let wsMsg = {
+        type: 8,
+        body: {
+            id: gameObject.gameId,
+            playerId: gameObject.president.id,
+            message: playerMsg
+        }
+    }
+
+    ws.send(JSON.stringify(wsMsg));
 }
 
 function findPlayerByID(id, playerList) {
