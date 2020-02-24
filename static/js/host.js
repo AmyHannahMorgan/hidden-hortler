@@ -216,6 +216,8 @@ hostReq.addEventListener('load', (e) => {
                             currentCheck = new PlayerCheck(players, 'vote', result => {
                                 if(result[0] > result[1]) {
                                     gameObject.hungParlimentCounter = 0;
+                                    gameObject.lastPresident = gameObject.president
+                                    gameObject.lastChancellor = gameObject.chancellor
                                 }
                                 else if(checkHungParliment()) {
                                     gameObject.hungParlimentCounter = 0;
