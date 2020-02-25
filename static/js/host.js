@@ -226,6 +226,28 @@ hostReq.addEventListener('load', (e) => {
                                     gameObject.hungParlimentCounter += 1;
                                 }
                             });
+                            
+                            let playerMsg = {
+                                type: 2,
+                                body: {
+                                    switch: 'chancellorVote',
+                                    data: {
+                                        destination: 'chancellorVote',
+                                        president: gameObject.president,
+                                        chancellor: gameObject.chancellor
+                                    }
+                                }
+                            }
+
+                            let wsMsg = {
+                                type: 7,
+                                body: {
+                                    id: gameObject.gameId,
+                                    message: playerMsg
+                                }
+                            }
+
+                            ws.send(JSON.stringify(wsMsg));
                             break;
                     }
                     break;
