@@ -226,7 +226,7 @@ hostReq.addEventListener('load', (e) => {
                                     gameObject.hungParlimentCounter += 1;
                                 }
                             });
-                            
+
                             let playerMsg = {
                                 type: 2,
                                 body: {
