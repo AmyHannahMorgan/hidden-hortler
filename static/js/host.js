@@ -419,7 +419,7 @@ function startGame() {
         case 6:
             for(let i = 0; i < players.length; i++) {
                 let pick = RNG(0, undefinedPlayers.length - 1);
-                let player = undefinedPlayers.splice(pick, 1);
+                let player = undefinedPlayers.splice(pick, 1)[0];
                 player.isHitler = false;
 
                 if(i < 2) {
@@ -436,7 +436,7 @@ function startGame() {
         case 8:
             for(let i = 0; i < players.length; i++) {
                 let pick = RNG(0, undefinedPlayers.length - 1);
-                let player = undefinedPlayers.splice(pick, 1);
+                let player = undefinedPlayers.splice(pick, 1)[0];
                 player.isHitler = false;
 
                 if(i < 3) {
@@ -453,7 +453,7 @@ function startGame() {
         case 10:
             for(let i = 0; i < players.length; i++) {
                 let pick = RNG(0, undefinedPlayers.length);
-                let player = undefinedPlayers.splice(pick, 1);
+                let player = undefinedPlayers.splice(pick, 1)[0];
                 player.isHitler = false;
 
                 if(i < 4) {
@@ -468,7 +468,7 @@ function startGame() {
             break;
     }
     fash[RNG(0, fash.length - 1)].isHitler = true;
-    
+
     for(let i = 0; i < players.length; i++) {
         let playerMsg
 
