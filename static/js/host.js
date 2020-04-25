@@ -548,6 +548,8 @@ function pickPresident() {
         }
     }
 
+    playerMsg = JSON.stringify(playerMsg);
+
     let wsMsg = {
         type: 8,
         body: {
