@@ -468,7 +468,7 @@ function startGame() {
             break;
     }
     fash[RNG(0, fash.length - 1)].isHitler = true;
-
+    
     for(let i = 0; i < players.length; i++) {
         let playerMsg
 
@@ -499,6 +499,8 @@ function startGame() {
                 }
             }
         }
+
+        playerMsg = JSON.stringify(playerMsg);
 
         let wsMsg = {
             type: 8,
