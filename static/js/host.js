@@ -52,7 +52,7 @@ class PlayerCheck {
     }
 
     update(id, value) {
-        response = this.findResByID(id)
+        let response = this.findResByID(id)
 
         response.response = value;
 
@@ -73,9 +73,11 @@ class PlayerCheck {
     }
 
     findResByID(id) {
+        let found = null
         this.responses.forEach(response => {
-            if(response.id === id) return response;
+            if(response.id === id) found = response;
         });
+        return found;
     }
 }
 
