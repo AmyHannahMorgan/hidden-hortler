@@ -1,5 +1,3 @@
-import { json } from "express";
-
 class PlayBoardHandler {
     constructor(playBoardArray) {
         this.playBoards = playBoardArray;
