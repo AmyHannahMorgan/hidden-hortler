@@ -203,6 +203,7 @@ hostReq.addEventListener('load', (e) => {
                         }
     
                         ws.send(JSON.stringify(wsMsg));
+                        checkPlayers();
                     }
                     break;
                 case 2: // game data from players
