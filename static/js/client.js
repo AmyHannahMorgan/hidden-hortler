@@ -1,3 +1,5 @@
+import { json } from "express";
+
 class PlayBoardHandler {
     constructor(playBoardArray) {
         this.playBoards = playBoardArray;
@@ -157,6 +159,8 @@ class PlayBoard {
                         }
                     }
 
+                    hostMsg = JSON.stringify(hostMsg);
+
                     let wsMsg = {
                         type: 6,
                         body: {
@@ -198,6 +202,8 @@ class PlayBoard {
                             selectedPlayerID: this.confirmModal.getAttribute('player-id')
                         }
                     };
+
+                    hostMsg = JSON.stringify(hostMsg);
 
                     let wsMsg = {
                         type: 6,
