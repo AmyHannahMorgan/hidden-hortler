@@ -226,7 +226,7 @@ function handleWsMessage(ws, message) {
                 }
                 break;
             case 3: //host to server and players, start game.
-                if(msgJSON.body.id !== undefined && checkGameId(msgJSON)) {
+                if(msgJSON.body.id !== undefined && checkGameId(msgJSON.body.id)) {
                     let obj = getGameObjectById(msgJSON.body.id);
 
                     obj.started = true;
