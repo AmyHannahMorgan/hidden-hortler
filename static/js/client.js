@@ -186,8 +186,8 @@ class PlayBoard {
 
                         playerIcon.addEventListener('click', (e) => {
                             this.confirmModal.classList.add('active');
-                            this.confirmModal.querySelector('.selectedPlayer').innerHTML = e.target.getAttribute('player-name');
-                            this.confirmModal.setAttribute('player-id', e.targetgetAttribute('player-id'));
+                            this.confirmModal.querySelector('.selectedPlayer').innerHTML = playerIcon.getAttribute('player-name');
+                            this.confirmModal.setAttribute('player-id', playerIcon.getAttribute('player-id'));
                         });
 
                         this.element.appendChild(playerIcon);
@@ -195,8 +195,9 @@ class PlayBoard {
                 }
                 this.yesCheck.addEventListener('click', () => {
                     let hostMsg = {
-                        type: 1,
+                        type: 2,
                         body: {
+                            type: 1,
                             selectedPlayerID: this.confirmModal.getAttribute('player-id')
                         }
                     };
