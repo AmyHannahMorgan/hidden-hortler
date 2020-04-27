@@ -106,10 +106,10 @@ class PolicyDeck {
     }
 
     shuffle() {
-        let newDeck = []
+        let newDeck = [];
 
-        for(let i = 0; i > 17; i++) {
-            newDeck.push(this.deck.splice(RNG[0, this.deck.length - 1], 1));
+        for(let i = 0; i < 17; i++) {
+            newDeck.push(this.deck.splice(RNG[0, this.deck.length - 1], 1)[0]);
         }
 
         this.deck = newDeck;
