@@ -1,3 +1,6 @@
+//HACK: this entire thing is using websockets, want to use webRTC, maybe write worker to make a uniform system for sending and reciving data regardless of the connecton type used
+//TODO: use session storage to store data such as game codes and playerIDs to allow for reconnection in the event of a disconnect
+
 class PlayerCheck {
     constructor(playerList, type, callback) {
         this.type = type;
@@ -116,6 +119,7 @@ class PolicyDeck {
     }
 
     draw(number) {
+        //TODO: recombine and shuffle deck on overdraw
         return this.deck.splice(0, number);
     }
 
@@ -181,6 +185,7 @@ hostReq.addEventListener('load', (e) => {
                     break;
                 case 1: // player join message with name
                     if(!maxPlayers){
+                        //TODO: add check to avoid duplicate names
                         console.log(`Player ${msgObj.body.name} joined with the ID: ${msgObj.body.id}`)
                         let index = players.push(msgObj.body) - 1;
                         spawnPlayerToken(players[index], playerContainer, playerIcons);
@@ -221,12 +226,16 @@ hostReq.addEventListener('load', (e) => {
                                     gameObject.hungParlimentCounter = 0;
                                     gameObject.lastPresident = gameObject.president
                                     gameObject.lastChancellor = gameObject.chancellor
+                                    //TODO: draw cards and send to president
                                 }
                                 else if(checkHungParliment()) {
                                     gameObject.hungParlimentCounter = 0;
+                                    //TODO: play top policy
+                                    //TODO: select next president
                                 }
                                 else {
                                     gameObject.hungParlimentCounter += 1;
+                                    //TODO: select next president
                                 }
                             });
 
@@ -252,6 +261,10 @@ hostReq.addEventListener('load', (e) => {
 
                             ws.send(JSON.stringify(wsMsg));
                             break;
+                        //TODO: case 2: policy cards from pres
+                        //TODO: case 3: played policy from chancellor
+                        //TODO: case 4: card peek
+                        //TODO: case 5: player select (president, investigate, shoot)
                     }
                     break;
             
@@ -317,7 +330,7 @@ function spawnPlayerToken(player, playerHolder, iconArray) {
 
     let playerName = document.createElement('p');
     playerName.classList.add('playerName');
-    playerName.innerHTML = player.name;
+    playerName.innerHTML = player.name; //TODO: decode text, set as innerText rather than innerHTML
 
     playerElem.appendChild(iconHolder);
     playerElem.appendChild(playerName);
@@ -409,6 +422,8 @@ function buildCounters(playerNumber) {
 
     return obj;
 }
+
+//TODO: function for playing a policy card
 
 function startGame() {
     gameObject.deck = new PolicyDeck();
