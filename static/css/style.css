@@ -314,6 +314,10 @@ body#playSceen {
     transition: ease-out opacity 0.25s;
 }
 
+.playBoard > h1 {
+    text-align: center;
+}
+
 .playBoard.playerSelect {
     flex-direction: row;
     flex-wrap: wrap;
@@ -342,6 +346,16 @@ body#playSceen {
     color: white;
 
     background-color: black;
+}
+
+.buttonHolder {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 50%;
 }
 
 .template {
@@ -475,16 +489,6 @@ body#playSceen {
     height: 100vh;
 
     text-align: center;
-}
-
-#selectChancellor > .confirmModal > .buttonHolder {
-    display: flex;
-    flex-direction: row;
-
-    justify-content: center;
-    align-items: center;
-
-    width: 50%;
 }
 
 #selectChancellor > .confirmModal.active {
