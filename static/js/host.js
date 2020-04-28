@@ -226,7 +226,31 @@ hostReq.addEventListener('load', (e) => {
                                     gameObject.hungParlimentCounter = 0;
                                     gameObject.lastPresident = gameObject.president
                                     gameObject.lastChancellor = gameObject.chancellor
-                                    //TODO: draw cards and send to president
+                                    let cards = gameObject.deck.draw(3);
+
+                                    let playerMsg = {
+                                        type: 2,
+                                        body: {
+                                            switch: 'presidentPolicy',
+                                            data: {
+                                                destination: 'presidentPolicy',
+                                                policies: cards
+                                            }
+                                        }
+                                    }
+
+                                    playerMsg = JSON.stringify(playerMsg);
+
+                                    let wsMsg = {
+                                        type: 8,
+                                        body: {
+                                            id: gameObject.id,
+                                            playerId: gameObject.president.id,
+                                            message: playerMsg
+                                        }
+                                    }
+
+                                    ws.send(JSON.stringify(wsMsg));
                                 }
                                 else if(checkHungParliment()) {
                                     gameObject.hungParlimentCounter = 0;
