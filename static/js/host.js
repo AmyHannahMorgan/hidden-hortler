@@ -475,6 +475,8 @@ function buildCounters(playerNumber) {
 //TODO: function for playing a policy card
 
 function startGame() {
+    startupHolder.classList.remove('active');
+    boardHolder.classList.add('active');
     gameObject.deck = new PolicyDeck();
 
     let undefinedPlayers = [...players];
