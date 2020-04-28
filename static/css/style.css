@@ -333,11 +333,10 @@ body#playSceen {
 }
 
 .playBoard button {
-    margin: 0 0.25em;
+    margin: 0.25em 0.25em;
     padding: 0.75em;
 
     flex-basis: 0;
-    flex-grow: 1;
 
     border: thin solid transparent;
     border-radius: 0.5rem;
@@ -356,6 +355,10 @@ body#playSceen {
     align-items: center;
 
     width: 50%;
+}
+
+.buttonHolder button {
+    flex-grow: 1;
 }
 
 .template {
@@ -493,6 +496,14 @@ body#playSceen {
 
 #selectChancellor > .confirmModal.active {
     display: flex;
+}
+
+#chancellorPolicy button.fascist, #presidentPolicy button.fascist {
+    background-color: var(--fash-color) ;
+}
+
+#chancellorPolicy button.lib, #presidentPolicy button.lib {
+    background-color: var(--lib-color) ;
 }
 
 /* animations */
