@@ -261,7 +261,32 @@ hostReq.addEventListener('load', (e) => {
 
                             ws.send(JSON.stringify(wsMsg));
                             break;
-                        //TODO: case 2: policy cards from pres
+                        case 2:
+                            gameObject.deck.discard(msgObj.body.discard);
+                            let playerMsg = {
+                                type: 2,
+                                body: {
+                                    switch: 'chancellorPolicy',
+                                    data: {
+                                        destination: 'chancellorPolicy',
+                                        policies: msgObj.body.remainder
+                                    }
+                                }
+                            }
+
+                            playerMsg = JSON.stringify(playerMsg);
+
+                            let wsMsg = {
+                                type: 8,
+                                body: {
+                                    id: gameObject.id,
+                                    playerId: gameObject.chancellor.id,
+                                    message: playerMsg
+                                }
+                            }
+
+                            ws.send(JSON.stringify(wsMsg));
+                            break;
                         //TODO: case 3: played policy from chancellor
                         //TODO: case 4: card peek
                         //TODO: case 5: player select (president, investigate, shoot)
