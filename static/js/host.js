@@ -472,7 +472,6 @@ function buildCounters(playerNumber) {
     return obj;
 }
 
-//TODO: function for playing a policy card
 function playPolicy(policyCard) {
     switch(policyCard.type) {
         case 'fascist':
@@ -484,7 +483,9 @@ function playPolicy(policyCard) {
                     break;
                 }
             });
-            //TODO: handle win condition
+            if(boardHolder.querySelector('.fashArea').querySelectorAll('.boardCounter.active').length === 6) {
+                //handle facist win
+            }
             break;
         case 'liberal':
             gameObject.counters.lib.forEach((counter, index) => {
@@ -493,7 +494,9 @@ function playPolicy(policyCard) {
                     boardHolder.querySelector('.libArea').querySelectorAll('.boardCounter')[index].classList.active('active');
                 }
             });
-            //TODO: handle win condition
+            if(boardHolder.querySelector('.libArea').querySelectorAll('.boardCounter.active').length === 5) {
+                //handle liberal win
+            }
             break;
     }
 }
