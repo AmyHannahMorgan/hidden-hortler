@@ -219,6 +219,48 @@ class PlayBoard {
                     this.confirmModal.classList.remove('active');
                 })
                 break;
+            case 'presidentPolicy':
+                this.passData = (data) => {
+                    this.policies = data;
+                    this.policies.forEach((policy, index) => {
+                        let element = document.createElement('button');
+                        element.classList.add('policy');
+                        element.classList.add(policy.type);
+                        element.setAttribute('policy-index', index);
+                        element.innerText = policy.type;
+
+                        element.addEventListener('click', (e) => {
+                            this.policySelected(e.target);
+                        });
+
+                        this.element.appendChild(element);
+                    });
+                }
+
+                this.policySelected = (policyElement) => {
+                    let selectedCard = this.policies.splice(policyElement.getAttribute('policy-index'), 1);
+                    let hostMsg = {
+                        type: 2,
+                        body: {
+                            type: 2,
+                            discard: selectedCard,
+                            remainder: this.policies
+                        }
+                    }
+
+                    hostMsg = JSON.stringify(hostMsg);
+
+                    let wsMsg = {
+                        type: 8,
+                        body: {
+                            code: gameCode,
+                            message: hostMsg
+                        }
+                    };
+
+                    ws.send(JSON.stringify(wsMsg));
+                }
+                break;
             default:
                 console.log(`unrecognised id: ${element.id}`);
                 break;
