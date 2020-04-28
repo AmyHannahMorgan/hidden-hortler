@@ -12,7 +12,7 @@
         <img src="/assets/SVGs/Logo.svg">
         <h2>Waiting for host...</h2>
     </div>
-    <div class="playBoard" id="nameSelect">
+    <div class="playBoard " id="nameSelect">
         <img src="/assets/SVGs/unknown.svg">
         <p id="nameErrorBox"></p>
         <input type="text" id="nameBox" placeholder="Enter name...">
@@ -26,14 +26,14 @@
         <h1 id="hitler"></h1>
         <h2 id="comrades"></h2>
 
-        <button class="okCheck"></button>OK</button>
+        <button class="okCheck">Ok</button>
     </div>
-    <div class="playBoard playerSelect active" id="selectChancellor">
+    <div class="playBoard playerSelect" id="selectChancellor">
         <div class="playerIcon template">
             <img src="/assets/SVGs/unknown.svg">
             <p class="playerName">test</p>
         </div>
-        <div class="confirmModal active">
+        <div class="confirmModal">
             <h1>Are you sure you want to select</h1>
             <h1 class="selectedPlayer"></h1>
             <h1>as your chancellor?</h1>
@@ -44,7 +44,18 @@
         </div>
     </div>
     <div class="playBoard" id="chancellorVote">
+        <h1>do you approve</h1>
+        <h1 class="governmentSelection">
+            <span class="president">{presidentName}</span><br>
+            and<br>
+            <span class="chancellor">{chancellorName}</span>
+        </h1>
+        <h1>for president and chancellor?</h1>
 
+        <div class="buttonHolder">
+            <button class="yesCheck">yes</button>
+            <button class="noCheck">no</button>
+        </div>
     </div>
     <div class="playBoard playerSelect" id="shootPlayer">
 
