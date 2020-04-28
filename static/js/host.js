@@ -473,6 +473,30 @@ function buildCounters(playerNumber) {
 }
 
 //TODO: function for playing a policy card
+function playPolicy(policyCard) {
+    switch(policyCard.type) {
+        case 'fascist':
+            gameObject.counters.fash.forEach((counter, index) => {
+                if(!counter.active) {
+                    counter.active = true;
+                    boardHolder.querySelector('.fashArea').querySelectorAll('.boardCounter')[index].classList.add('active');
+                    //TODO: handle special counters
+                    break;
+                }
+            });
+            //TODO: handle win condition
+            break;
+        case 'liberal':
+            gameObject.counters.lib.forEach((counter, index) => {
+                if(!counter.active) {
+                    counter.active = true;
+                    boardHolder.querySelector('.libArea').querySelectorAll('.boardCounter')[index].classList.active('active');
+                }
+            });
+            //TODO: handle win condition
+            break;
+    }
+}
 
 function startGame() {
     startupHolder.classList.remove('active');
