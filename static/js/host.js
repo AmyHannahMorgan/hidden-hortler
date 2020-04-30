@@ -147,6 +147,7 @@ let gameObject;
 
 const startupHolder = document.querySelector('#startup');
 const boardHolder = document.querySelector('#boards');
+const endHolder = document.querySelector('#end');
 
 const startGameButton = document.querySelector('#gameStart');
 
@@ -188,7 +189,7 @@ hostReq.addEventListener('load', (e) => {
                         //TODO: add check to avoid duplicate names
                         console.log(`Player ${msgObj.body.name} joined with the ID: ${msgObj.body.id}`)
                         let index = players.push(msgObj.body) - 1;
-                        spawnPlayerToken(players[index], playerContainer, playerIcons);
+                        spawnPlayerToken(players[index], playerContainer, playerIcons, index);
     
                         let playerMsg = {
                             type: 1,
@@ -370,7 +371,7 @@ function buildPlayerIcons(nodeArray) {
     return icons;
 }
 
-function spawnPlayerToken(player, playerHolder, iconArray) {
+function spawnPlayerToken(player, playerHolder, iconArray, index) {
     let playerElem = document.createElement('div');
     playerElem.classList.add('player');
 
@@ -388,6 +389,8 @@ function spawnPlayerToken(player, playerHolder, iconArray) {
 
     playerElem.appendChild(iconHolder);
     playerElem.appendChild(playerName);
+    
+    playerElem.setAttribute('player-index', index);
 
     playerHolder.appendChild(playerElem);
 }
@@ -503,6 +506,31 @@ function playPolicy(policyCard) {
                 //handle liberal win
             }
             break;
+    }
+}
+
+function handleWin(type, reasonMessage) {
+    if(type) {
+        endHolder.querySelector('#endMessage').innerText = 'Fascists have won!';
+        endHolder.querySelector('#endReason').innerText = reasonMessage;
+    }
+    else {
+        endHolder.querySelector('#endMessage').innerText = 'Liberals have won!';
+        endHolder.querySelector('#endReason').innerText = reasonMessage;
+    }
+
+    
+    boardHolder.classList.remove('active');
+    endHolder.classList.add('active');
+    let playerIcons = playerContainer.querySelector('.player');
+
+    for(let i = 0; i < playerIcons.length; i++) {
+        let player = players[parseInt(playerIcons[i].getAttribute('player-index'))];
+        if(player.party = 'fascist') {
+            if(player.isHitler) playerIcons[i].classList.add('hitler');
+            else playerIcons[i].classList.add('fascist');
+        }
+        else if(player.party === 'liberal') playerIcons[i].classList.add('liberal');
     }
 }
 
