@@ -313,7 +313,10 @@ hostReq.addEventListener('load', (e) => {
 
                             ws.send(JSON.stringify(wsMsg));
                             break;
-                        //TODO: case 3: played policy from chancellor
+                        case 3:
+                            gameObject.deck.discard(msgObj.body.remainder);
+                            playPolicy(msgObj.body.selected);
+                            break;
                         //TODO: case 4: card peek
                         //TODO: case 5: player select (president, investigate, shoot)
                     }
