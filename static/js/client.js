@@ -257,7 +257,7 @@ class PlayBoard {
                             type: 2,
                             body: {
                                 type: 3,
-                                discard: selectedCard,
+                                selected: selectedCard,
                                 remainder: this.policies
                             }
                         }
