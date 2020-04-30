@@ -220,8 +220,10 @@ class PlayBoard {
                 })
                 break;
             case 'presidentPolicy':
+            case 'chancellorPolicy':
                 this.passData = (data) => {
                     this.policies = data.policies;
+                    this.type = data.type;
                     this.policies.forEach((policy, index) => {
                         let element = document.createElement('button');
                         element.classList.add('policy');
@@ -239,12 +241,25 @@ class PlayBoard {
 
                 this.policySelected = (policyElement) => {
                     let selectedCard = this.policies.splice(policyElement.getAttribute('policy-index'), 1);
-                    let hostMsg = {
-                        type: 2,
-                        body: {
+                    let hostMsg;
+                    if(this.type === 'president') {
+                        hostMsg = {
                             type: 2,
-                            discard: selectedCard,
-                            remainder: this.policies
+                            body: {
+                                type: 2,
+                                discard: selectedCard,
+                                remainder: this.policies
+                            }
+                        }
+                    }
+                    else if(this.type === 'chancellor') {
+                        hostMsg = {
+                            type: 2,
+                            body: {
+                                type: 3,
+                                discard: selectedCard,
+                                remainder: this.policies
+                            }
                         }
                     }
 
