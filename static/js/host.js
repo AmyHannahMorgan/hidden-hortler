@@ -234,6 +234,7 @@ hostReq.addEventListener('load', (e) => {
                                             switch: 'presidentPolicy',
                                             data: {
                                                 destination: 'presidentPolicy',
+                                                type: 'president',
                                                 policies: cards
                                             }
                                         }
@@ -293,6 +294,7 @@ hostReq.addEventListener('load', (e) => {
                                     switch: 'chancellorPolicy',
                                     data: {
                                         destination: 'chancellorPolicy',
+                                        type: 'chancellor',
                                         policies: msgObj.body.remainder
                                     }
                                 }
