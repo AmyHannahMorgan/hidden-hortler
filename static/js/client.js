@@ -221,7 +221,7 @@ class PlayBoard {
                 break;
             case 'presidentPolicy':
                 this.passData = (data) => {
-                    this.policies = data;
+                    this.policies = data.policies;
                     this.policies.forEach((policy, index) => {
                         let element = document.createElement('button');
                         element.classList.add('policy');
