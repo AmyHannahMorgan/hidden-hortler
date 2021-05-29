@@ -19,6 +19,6 @@
   "homepage": "https://github.com/AmyHannahMorgan/hidden-hortler#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "ws": "^7.2.1"
+    "ws": "^7.4.6"
   }
 }
